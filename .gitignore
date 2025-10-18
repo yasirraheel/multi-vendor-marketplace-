@@ -12,7 +12,11 @@
 # Laravel specific
 /public/hot
 /public/storage
-/public/images/demo
+/public/images/demo/**
+!/public/images/demo/logos/
+!/public/images/demo/logos/*
+!/public/images/demo/banners/
+!/public/images/demo/banners/*
 /public/sitemap.xml
 /public/*.index*
 /public/*build*
