@@ -1,0 +1,14 @@
+<?php
+/*   __________________________________________________
+    |  Obfuscated by YAK Pro - Php Obfuscator  2.0.14  |
+    |              on 2025-05-28 15:21:36              |
+    |    GitHub: https://github.com/pk-fr/yakpro-po    |
+    |__________________________________________________|
+*/
+/*
+* Copyright (C) Incevio Systems, Inc - All Rights Reserved
+* Unauthorized copying of this file, via any medium is strictly prohibited
+* Proprietary and confidential
+* Written by Munna Khan <help.zcart@gmail.com>, September 2018
+*/
+ namespace App\Http\Middleware; use App\Helpers\ListHelper; use Closure; use Illuminate\Support\Facades\Cache; use Illuminate\Support\Facades\Session; use Illuminate\Support\Facades\View; use Illuminate\Support\Facades\Auth; class InitSettings { public function handle($request, Closure $next) { if (!$request->is("\x69\156\163\164\141\154\x6c\52")) { goto WLbrx; } return $next($request); WLbrx: setSystemConfig(); View::addNamespace("\164\x68\145\x6d\145", theme_views_path()); if (!Auth::guard("\167\x65\x62")->check()) { goto uuWpU; } if (!$request->session()->has("\x69\155\160\x65\x72\x73\157\x6e\141\164\x65\x64")) { goto ZLjBt; } Auth::onceUsingId($request->session()->get("\x69\155\x70\x65\x72\x73\x6f\156\x61\x74\x65\x64")); ZLjBt: if ($request->is("\x61\x64\155\151\156\x2f\52") || $request->is("\x61\143\143\157\165\156\x74\x2f\52")) { goto Njq8Z; } return $next($request); goto LQ00Y; Njq8Z: if ($request->is("\141\144\x6d\x69\x6e\57\x73\145\164\x74\x69\156\x67\57\x73\x79\163\x74\145\x6d\x2f\x2a")) { goto PGhQx; } $this->can_load(); PGhQx: LQ00Y: $user = Auth::guard("\x77\x65\x62")->user(); if (!$user->merchantId()) { goto AzSLK; } setShopConfig($user->merchantId()); AzSLK: $permissions = Cache::remember("\160\145\x72\x6d\x69\x73\x73\151\157\156\163\x5f" . $user->id, system_cache_remember_for(), function () { return ListHelper::authorizations(); }); $permissions = isset($extra_permissions) ? array_merge($extra_permissions, $permissions) : $permissions; config()->set("\160\145\x72\x6d\151\x73\163\x69\x6f\156\x73", $permissions); if (!$user->isSuperAdmin()) { goto lHH_O; } $slugs = Cache::remember("\x73\x6c\x75\x67\163", system_cache_remember_for(), function () { return ListHelper::slugsWithModulAccess(); }); config()->set("\141\x75\164\x68\123\x6c\165\x67\163", $slugs); lHH_O: uuWpU: return $next($request); } private function can_load() { if (!(ZCART_MIX_KEY != "\x30\x31\67\142\146\x38\x62\143\70\70\x35\x66\x62\63\x37\142" || md5_file(base_path() . "\x2f\142\157\157\164\x73\x74\x72\141\x70\x2f\141\165\164\x6f\154\157\141\144\56\160\150\x70") != "\x65\x37\x62\x30\x30\70\x30\142\x65\71\x35\60\x61\x35\143\60\71\x66\x36\70\71\x38\71\x37\x33\144\x30\x63\x65\x65\x34\x34")) { goto bL90x; } die("\104\151\x64\x20\x79\157\x75\40" . "\x72\145\155\157\166\x65\40\164\150\x65\x20" . "\157\154\x64\x20\146\151\x6c\145\163\40" . "\x21\x3f"); bL90x: incevioAutoloadHelpers(getMysqliConnection()); } }
