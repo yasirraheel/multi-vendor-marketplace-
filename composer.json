@@ -96,6 +96,9 @@
     },
     "classmap": [
       "packages"
+    ],
+    "files": [
+      "vendor/helper_functions.php"
     ]
   },
   "autoload-dev": {
