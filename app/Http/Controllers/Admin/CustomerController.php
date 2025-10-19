@@ -10,6 +10,7 @@ use App\Http\Requests\Validations\CreateCustomerRequest;
 use App\Http\Requests\Validations\UpdateCustomerRequest;
 use App\Repositories\Customer\CustomerRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -50,29 +51,34 @@ class CustomerController extends Controller
     // Function will process the ajax request to fetch data
     public function getCustomers(Request $request)
     {
-        $customers = $this->customer->all();
+        try {
+            $customers = $this->customer->all();
 
-        return Datatables::of($customers)
-            ->editColumn('checkbox', function ($customer) {
-                return view('admin.partials.actions.customer.checkbox', compact('customer'));
-            })
-            ->addColumn('option', function ($customer) {
-                return view('admin.partials.actions.customer.options', compact('customer'));
-            })
-            ->addColumn('image', function ($customer) {
-                return view('admin.partials.actions.customer.image', compact('customer'));
-            })
-            ->editColumn('nice_name', function ($customer) {
-                return view('admin.partials.actions.customer.nice_name', compact('customer'));
-            })
-            ->editColumn('name', function ($customer) {
-                return view('admin.partials.actions.customer.full_name', compact('customer'));
-            })
-            ->editColumn('orders_count', function ($customer) {
-                return view('admin.partials.actions.customer.orders_count', compact('customer'));
-            })
-            ->rawColumns(['image', 'nice_name', 'name', 'orders_count', 'checkbox', 'option'])
-            ->make(true);
+            return Datatables::of($customers)
+                ->editColumn('checkbox', function ($customer) {
+                    return view('admin.partials.actions.customer.checkbox', compact('customer'));
+                })
+                ->addColumn('option', function ($customer) {
+                    return view('admin.partials.actions.customer.options', compact('customer'));
+                })
+                ->addColumn('image', function ($customer) {
+                    return view('admin.partials.actions.customer.image', compact('customer'));
+                })
+                ->editColumn('nice_name', function ($customer) {
+                    return view('admin.partials.actions.customer.nice_name', compact('customer'));
+                })
+                ->editColumn('name', function ($customer) {
+                    return view('admin.partials.actions.customer.full_name', compact('customer'));
+                })
+                ->editColumn('orders_count', function ($customer) {
+                    return view('admin.partials.actions.customer.orders_count', compact('customer'));
+                })
+                ->rawColumns(['image', 'nice_name', 'name', 'orders_count', 'checkbox', 'option'])
+                ->make(true);
+        } catch (\Exception $e) {
+            Log::error('Customer DataTable Error: ' . $e->getMessage());
+            return Datatables::of(collect())->make(true);
+        }
     }
 
     /**
